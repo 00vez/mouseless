@@ -1,8 +1,8 @@
 {
-  "name": "mouseless",
+  "name": "ohnemaus",
   "version": "1.4.0",
-  "productName": "Mouseless",
-  "author": "überdosis GbR <support@mouseless.app>",
+  "productName": "OhneMaus",
+  "author": "00vez",
   "description": "Keyboard shortcut training and look-up.",
   "scripts": {
     "serve": "vue-cli-service serve",

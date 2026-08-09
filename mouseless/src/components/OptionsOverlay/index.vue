@@ -112,8 +112,8 @@
           Support
         </div>
         <div>
-          <a href="mailto:support@mouseless.app">
-            support@mouseless.app
+          <a href="mailto:maus.angerer.duckdns.org">
+            maus.angerer.duckdns.org
           </a>
         </div>
       </div>

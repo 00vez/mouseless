@@ -8,7 +8,7 @@ export default new class {
   constructor() {
     autoUpdater.autoDownload = false
 
-    // logs to ~/Library/Logs/Mouseless/log.log
+    // logs to ~/Library/Logs/OhneMaus/log.log
     autoUpdater.logger = log
     autoUpdater.logger.transports.file.level = 'info'
 

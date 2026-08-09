@@ -7,7 +7,7 @@
       <div class="shortcuts-route__header-bar">
         <div class="shortcuts-route__title">
           <img class="shortcuts-route__logo" :src="logo" v-if="logo">
-          {{ appTitle || 'Mouseless' }}
+          {{ appTitle || 'OhneMaus' }}
         </div>
         <button class="shortcuts-route__maximize" @click="maximize">
           <icon name="maximize" />
@@ -29,7 +29,7 @@
         <img class="shortcuts-route__placeholder-image" src="~@/assets/images/logo.png">
         <p>
           Open this to see the keyboard shortcuts for your current app.
-          Nothing to see for Mouseless here though.
+          Nothing to see for OhneMaus here though.
         </p>
       </div>
       <template v-else>
@@ -151,7 +151,7 @@ export default {
     },
 
     showPlaceholder() {
-      return this.title === 'Mouseless'
+      return this.title === 'OhneMaus'
     },
   },
 

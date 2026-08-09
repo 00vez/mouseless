@@ -24,7 +24,7 @@ function setNested(object, key, value) {
 
 class WebStore {
 
-  constructor(storageKey = 'mouseless') {
+  constructor(storageKey = 'ohnemaus') {
     this.storageKey = storageKey
   }
 

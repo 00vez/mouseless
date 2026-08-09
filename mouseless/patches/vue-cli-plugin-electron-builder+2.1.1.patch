@@ -1,0 +1,15 @@
+diff --git a/node_modules/vue-cli-plugin-electron-builder/index.js b/node_modules/vue-cli-plugin-electron-builder/index.js
+index 502fe86..d31ad74 100644
+--- a/node_modules/vue-cli-plugin-electron-builder/index.js
++++ b/node_modules/vue-cli-plugin-electron-builder/index.js
+@@ -507,7 +507,9 @@ module.exports = (api, options) => {
+               env: {
+                 ...process.env,
+                 // Disable electron security warnings
+-                ELECTRON_DISABLE_SECURITY_WARNINGS: true
++                ELECTRON_DISABLE_SECURITY_WARNINGS: true,
++                // Electron rejects --openssl-legacy-provider in NODE_OPTIONS
++                NODE_OPTIONS: ''
+               },
+               stdio: stdioConfig,
+               windowsHide: false

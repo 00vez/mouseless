@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>OhneMaus — Fortschritt</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #222; line-height: 1.5; }
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid #ddd; padding-bottom: .2rem; }
+  li { margin: .2rem 0; }
+  code { background: #f4f4f4; padding: .1rem .3rem; border-radius: 3px; font-size: .9em; }
+  .ok::before { content: "✓ "; color: #1a7f37; }
+  .todo::before { content: "☐ "; color: #9a6700; }
+  .warn::before { content: "⚠ "; color: #b35900; }
+</style>
+</head>
+<body>
+
+<h1>OhneMaus — Fortschritt</h1>
+
+<h2>Status</h2>
+<ul>
+  <li class="ok">Electron-App (macOS) läuft unverändert — nach Umbaue getestet</li>
+  <li class="ok">PWA-Web-Build (VUE_APP_TARGET=web) kompiliert, Production-Build sauber</li>
+  <li class="ok">Esc-als-Cmd-Toggle in den Einstellungen</li>
+  <li class="todo">Deploy nach Unraid + NPM Proxy Host</li>
+</ul>
+
+<h2>Web-App (PWA)</h2>
+<ul>
+  <li>Gleiche Vue-Komponenten wie Electron-App — kein Doppelcode, nur Webpack-Aliasse</li>
+  <li>Keymap fest auf US-QWERTY (<code>staticKeymap.js</code> ersetzt <code>native-keymap</code>)</li>
+  <li><code>electron</code>/<code>@electron/remote</code> → <code>electronStub.js</code> (Links via <code>window.open</code>)</li>
+  <li><code>Store.js</code> → localStorage-Wrapper, API identisch</li>
+  <li>PWA: Manifest, Service Worker, alle Icons generiert</li>
+</ul>
+
+<h2>Web-Build weggefallen</h2>
+<ul>
+  <li>Lizenz-Screen (isVerified immer true)</li>
+  <li>Active-App-Erkennung / <code>/shortcuts</code>-Route (active-win — im Browser unmöglich)</li>
+  <li>Optionen: Menüleiste, Docksymbol, Autostart</li>
+  <li>App-Whitelist Web: Safari, macOS, Finder, Spotify, Google Docs, Gmail (nur Web-Version)</li>
+</ul>
+
+<h2>Esc als Cmd (Web + Electron)</h2>
+<ul>
+  <li>Einstellungen → Toggle "Use Escape key as Cmd"</li>
+  <li>ESC ersetzt Meta in der Kombination ⌘⇧M — Üben auf Windows ohne Cmd-Key</li>
+  <li>Persistiert via Store (Komponentendaten, Schlüssel zu <code>escAsCmd</code>)</li>
+</ul>
+
+<h2>Scripts</h2>
+<ul>
+  <li><code>NODE_OPTIONS=--openssl-legacy-provider yarn start</code> — Electron-Dev</li>
+  <li><code>yarn serve:web</code> — Web-Dev (localhost:8084)</li>
+  <li><code>yarn build:web</code> — Production-Build nach <code>dist/</code></li>
+</ul>
+
+<h2>Offen</h2>
+<ul>
+  <li class="todo">Deploy: <code>scp -r dist/* unraid:/mnt/user/appdata/hello/html/maus/</code></li>
+  <li class="todo">NPM Proxy Host: <code>maus.angerer.duckdns.org</code> → 192.168.178.13:80, Let's Encrypt + Force SSL</li>
+  <li class="todo">Auf Mac: "Zum Home-Bildschirm hinzufügen" testen (Installierbarkeit)</li>
+</ul>
+
+</body>
+</html>

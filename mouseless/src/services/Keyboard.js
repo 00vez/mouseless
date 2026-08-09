@@ -52,7 +52,7 @@ export default class Keyboard {
     ['Control', 'ArrowRight'], // window navigation
     ['Control', 'Meta', 'd'], // dictionary
     ['Alt', 'Meta', 'd'], // toggle dock
-    Store.get('shortcut', []), // mouseless shortcut
+    Store.get('shortcut', []), // ohnemaus shortcut
   ]
 
   static keymap = Object

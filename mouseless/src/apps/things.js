@@ -34,7 +34,7 @@ module.exports = {
           title: 'Create a new project',
           keys: ['Meta', 'Alt', 'n'],
         },
-        // mouseless can't block these shortcuts
+        // ohnemaus can't block these shortcuts
         // {
         //   title: 'Open Quick Entry',
         //   keys: ['Control', 'Space'],

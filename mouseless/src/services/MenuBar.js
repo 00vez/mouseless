@@ -63,7 +63,7 @@ export default new class {
       icon: path.join(__static, 'MenuIconTemplate.png'),
       preloadWindow: true,
       showDockIcon: true,
-      tooltip: 'Mouseless',
+      tooltip: 'OhneMaus',
     })
 
     this.menubar.on('after-create-window', () => {
@@ -86,7 +86,7 @@ export default new class {
       const activeWindow = activeWin.sync()
       const appName = activeWindow ? activeWindow.owner.name : null
       const defaultResponse = {
-        app: 'Mouseless',
+        app: 'OhneMaus',
         shortcuts: [],
       }
 
@@ -96,7 +96,7 @@ export default new class {
 
       this.menubar.window.webContents.send('activeWindow:loading')
 
-      if (['Electron', 'Mouseless'].includes(appName)) {
+      if (['Electron', 'OhneMaus'].includes(appName)) {
         this.menubar.window.webContents.send('activeWindow:response', defaultResponse)
       } else {
         windowShortcuts(appName)
@@ -125,7 +125,7 @@ export default new class {
     })
 
     this.menubar.on('after-hide', () => {
-      // restore focus of previous app only if there is no main window of mouseless
+      // restore focus of previous app only if there is no main window of ohnemaus
       if (!this.isWindowVisible(this.mainWindow)) {
         this.menubar.app.hide()
       }
@@ -186,7 +186,7 @@ export default new class {
   }
 
   isWindowVisible(window) {
-    // https://github.com/ueberdosis/mouseless/issues/21
+    // https://github.com/00vez/ohnemaus/issues/21
     // Steps to reproduce: Press the reference shortcut while in safari
     return !window.isDestroyed() && window.isVisible()
   }

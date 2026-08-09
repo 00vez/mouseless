@@ -15,12 +15,12 @@ module.exports = {
 
   pwa: isWebTarget
     ? {
-      name: 'Mouseless',
+      name: 'OhneMaus',
       themeColor: '#000000',
       appleMobileWebAppCapable: 'yes',
       appleMobileWebAppStatusBarStyle: 'black',
       manifestOptions: {
-        short_name: 'Mouseless',
+        short_name: 'OhneMaus',
         display: 'standalone',
         start_url: '.',
       },
@@ -76,12 +76,12 @@ module.exports = {
   pluginOptions: isWebTarget
     ? {
       pwa: {
-        name: 'Mouseless',
+        name: 'OhneMaus',
         themeColor: '#000000',
         appleMobileWebAppCapable: 'yes',
         appleMobileWebAppStatusBarStyle: 'black',
         manifestOptions: {
-          short_name: 'Mouseless',
+          short_name: 'OhneMaus',
           display: 'standalone',
           start_url: '.',
         },
@@ -109,11 +109,11 @@ module.exports = {
         },
         builderOptions: {
           appId: process.env.VUE_APP_IS_SETAPP === 'true'
-            ? 'com.ueberclub.mouseless-setapp'
-            : 'com.Mouseless.app',
+            ? 'com.ohnemaus.setapp'
+            : 'com.ohnemaus.app',
           artifactName: '${productName}-${version}-${os}.${ext}', // eslint-disable-line
           afterSign: 'electron-builder-notarize',
-          productName: 'Mouseless',
+          productName: 'OhneMaus',
           mac: {
             mergeASARs: false,
             target: {
@@ -133,7 +133,7 @@ module.exports = {
                 name: 'ueber',
                 region: 'fra1',
                 channel: 'latest',
-                path: '/mouseless/mac',
+                path: '/ohnemaus/mac',
                 acl: 'public-read',
               },
             ],

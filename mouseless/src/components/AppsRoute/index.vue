@@ -62,7 +62,7 @@ export default {
 
   methods: {
     openFeedbackBoard() {
-      shell.openExternal('https://feedback.mouseless.app')
+      shell.openExternal('https://maus.angerer.duckdns.org')
     },
   },
 }

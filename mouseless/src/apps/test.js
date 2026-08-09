@@ -16,7 +16,7 @@ module.exports = {
         //   // should be ['Control', 'Alt', 'Shift', 'Meta', 'm']
         // },
         // {
-        //   title: 'Mouseless Shortcut',
+        //   title: 'OhneMaus Shortcut',
         //   keys: ['Meta', 'Shift', 'm'],
         // },
         // {
