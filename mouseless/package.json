@@ -8,7 +8,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:web": "cross-env VUE_APP_TARGET=web vue-cli-service build",
-    "serve:web": "cross-env VUE_APP_TARGET=web vue-cli-service serve",
+    "serve:web": "cross-env VUE_APP_TARGET=web NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "start": "vue-cli-service electron:serve",
     "electron:generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten",

@@ -6,6 +6,7 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'production',
 
   css: {
+    sourceMap: true,
     loaderOptions: {
       scss: {
         prependData: '@import "~@/variables.scss";',
@@ -46,6 +47,13 @@ module.exports = {
       )
       return
     }
+    config.module
+      .rule('vue')
+      .use('vue-loader')
+      .tap(options => ({
+        ...options,
+        cacheDirectory: false,
+      }))
 
     // required for 'native-ext-loader'
     config.node.set('__dirname', true)
@@ -71,6 +79,13 @@ module.exports = {
       .end()
 
     config.resolve.extensions.prepend('.node')
+
+    config.module
+      .rule('vue')
+      .use('cache-loader')
+      .loader('cache-loader')
+      .options({ cacheDirectory: false })
+      .end()
   },
 
   pluginOptions: isWebTarget
