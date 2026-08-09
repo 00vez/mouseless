@@ -23,7 +23,7 @@
   <li class="ok">Electron-App (macOS) läuft unverändert — nach Umbaue getestet</li>
   <li class="ok">PWA-Web-Build (VUE_APP_TARGET=web) kompiliert, Production-Build sauber</li>
   <li class="ok">Esc-als-Cmd-Toggle in den Einstellungen</li>
-  <li class="todo">Deploy nach Unraid + NPM Proxy Host</li>
+  <li class="ok">Deploy nach Unraid + NPM Proxy Host</li>
 </ul>
 
 <h2>Web-App (PWA)</h2>
@@ -59,10 +59,72 @@
 
 <h2>Offen</h2>
 <ul>
-  <li class="todo">Deploy: <code>scp -r dist/* unraid:/mnt/user/appdata/hello/html/maus/</code></li>
-  <li class="todo">NPM Proxy Host: <code>maus.angerer.duckdns.org</code> → 192.168.178.13:80, Let's Encrypt + Force SSL</li>
   <li class="todo">Auf Mac: "Zum Home-Bildschirm hinzufügen" testen (Installierbarkeit)</li>
 </ul>
+
+<h2>Deployment (Unraid)</h2>
+<ul>
+  <li class="ok">Git-Repo: <code>00vez/mouseless</code> — Umbenennung Mouseless → OhneMaus</li>
+  <li class="ok">Web-Build: <code>yarn build:web</code> (NODE_OPTIONS=--openssl-legacy-provider)</li>
+  <li class="ok">Container: <code>maus</code> — nginx:alpine auf br0, feste IP 192.168.178.14:8081</li>
+  <li class="ok">Files: <code>/mnt/user/appdata/maus/html/</code></li>
+  <li class="ok">Nginx-Config: <code>/mnt/user/appdata/maus/nginx-conf/default.conf</code> (Port 8081)</li>
+  <li class="ok">NPM Proxy Host: <code>maus.angerer.duckdns.org</code> → 192.168.178.14:8081</li>
+  <li class="ok">SSL: Let's Encrypt + Force SSL</li>
+  <li class="ok">URL: <code>https://maus.angerer.duckdns.org/</code> — 200 OK</li>
+</ul>
+
+<h2>Unraid Stack</h2>
+<table style="width:100%; border-collapse:collapse; font-size:.9em;">
+  <tr style="border-bottom:1px solid #ddd; font-weight:bold;">
+    <td style="padding:.3rem;">Container</td>
+    <td style="padding:.3rem;">IP (br0)</td>
+    <td style="padding:.3rem;">Port</td>
+    <td style="padding:.3rem;">Domain</td>
+  </tr>
+  <tr style="border-bottom:1px solid #eee;">
+    <td style="padding:.3rem;">npm</td>
+    <td style="padding:.3rem;">192.168.178.12</td>
+    <td style="padding:.3rem;">80/443</td>
+    <td style="padding:.3rem;">— (Admin: :81)</td>
+  </tr>
+  <tr style="border-bottom:1px solid #eee;">
+    <td style="padding:.3rem;">hello</td>
+    <td style="padding:.3rem;">192.168.178.13</td>
+    <td style="padding:.3rem;">80</td>
+    <td style="padding:.3rem;">schnapsbrenner.at</td>
+  </tr>
+  <tr style="border-bottom:1px solid #eee;">
+    <td style="padding:.3rem;">maus</td>
+    <td style="padding:.3rem;">192.168.178.14</td>
+    <td style="padding:.3rem;">8081</td>
+    <td style="padding:.3rem;">maus.angerer.duckdns.org</td>
+  </tr>
+  <tr style="border-bottom:1px solid #eee;">
+    <td style="padding:.3rem;">immich</td>
+    <td style="padding:.3rem;">192.168.178.49</td>
+    <td style="padding:.3rem;">8080</td>
+    <td style="padding:.3rem;">immich.angerer.duckdns.org</td>
+  </tr>
+  <tr style="border-bottom:1px solid #eee;">
+    <td style="padding:.3rem;">vaultwarden</td>
+    <td style="padding:.3rem;">192.168.178.49</td>
+    <td style="padding:.3rem;">4743</td>
+    <td style="padding:.3rem;">bitwarden.angerer.duckdns.org</td>
+  </tr>
+  <tr style="border-bottom:1px solid #eee;">
+    <td style="padding:.3rem;">schnapsbrenner-api</td>
+    <td style="padding:.3rem;">172.17.0.2</td>
+    <td style="padding:.3rem;">8000</td>
+    <td style="padding:.3rem;">schnapsbrenner.at/api/*</td>
+  </tr>
+  <tr style="border-bottom:1px solid #eee;">
+    <td style="padding:.3rem;">adguard</td>
+    <td style="padding:.3rem;">192.168.178.11</td>
+    <td style="padding:.3rem;">—</td>
+    <td style="padding:.3rem;">—</td>
+  </tr>
+</table>
 
 </body>
 </html>
