@@ -1,0 +1,67 @@
+.shortcut-enter-active,
+.shortcut-leave-active {
+  transition: all 0.2s $easeInOutQuad;
+}
+
+.shortcut-enter {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.shortcut-leave-to {
+  transform: translateX(-10px);
+  opacity: 0;
+}
+
+.test-route {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 6px;
+  text-align: center;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 auto;
+
+    &.is-failed {
+      animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 auto;
+    min-height: 16px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__description {
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.5;
+    max-width: 350px;
+    margin: 6px auto 0 auto;
+  }
+
+  &__keys {
+    margin-top: 20px;
+  }
+
+  &__key-set {
+    display: inline-flex;
+    margin-right: 40px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

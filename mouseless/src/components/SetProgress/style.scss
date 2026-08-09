@@ -1,0 +1,16 @@
+.set-progress {
+
+  display: inline-flex;
+  align-items: center;
+
+  &__message {
+    margin-left: 8px;
+  }
+
+  &__text {
+    opacity: 0.5;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+}
