@@ -70,15 +70,22 @@ export default {
 
       this.done = true
       const flash = this.$refs.flash
+      const root = this.$el
 
       const a = flash.animate([
         { opacity: 0 },
-        { opacity: 1, offset: 0.15 },
-        { opacity: 1, offset: 0.45 },
-        { opacity: 0, offset: 1 },
-      ], { duration: 720, easing: 'linear' })
+        { opacity: 1, offset: 0.2 },
+        { opacity: 1, offset: 0.5 },
+      ], { duration: 420, easing: 'linear', fill: 'forwards' })
 
-      a.onfinish = () => { this.$emit('complete') }
+      a.onfinish = () => {
+        const b = root.animate([
+          { opacity: 1 },
+          { opacity: 0 },
+        ], { duration: 650, easing: EASE_OUT, fill: 'forwards' })
+
+        b.onfinish = () => { this.$emit('complete') }
+      }
     },
   },
 }
@@ -105,23 +112,19 @@ $ease-out: cubic-bezier(0.23, 1, 0.32, 1);
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.4s $ease-out;
-  }
-
-  &.gw--playing .gw__video {
-    opacity: 1;
   }
 
   .gw__hint {
     position: absolute;
     bottom: 9vh;
-    color: rgba(255, 255, 255, 0.9);
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.45);
+    color: rgba(255, 255, 255, 0.95);
     letter-spacing: 0.28em;
     text-transform: uppercase;
     font-size: 12px;
     animation: gw-hint 2.4s ease-in-out infinite;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
   }
 
   &.gw--playing .gw__hint {

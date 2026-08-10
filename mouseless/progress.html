@@ -18,9 +18,23 @@
 </head>
 <body>
 
-<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr) + (17:15 - 18:00 Uhr) + (18:30 - 19:00 Uhr) + (19:45 - 20:05 Uhr) + (20:15 - 21:00 Uhr)</div>
+<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr) + (17:15 - 18:00 Uhr) + (18:30 - 19:00 Uhr) + (19:45 - 20:05 Uhr) + (20:15 - 21:00 Uhr) + (21:05 - 21:30 Uhr)</div>
 
 <h1>OhneMaus — Protokoll & Fortschritt</h1>
+
+<h2>Protokoll vom 10.08.2026 (6. Session)</h2>
+<h3>Gift final: erster Frame + weicher Übergang</h3>
+<ul>
+  <li class="ok"><strong>Erster Frame direkt sichtbar</strong> — Video-Opacity-Fade entfernt: <code>video</code> ist ab Mount sichtbar (<code>opacity: 1</code>, <code>preload="auto"</code>, <code>readyState 4</code> beim Laden), Hint <code>Klicken zum Öffnen</code> liegt als Pill (dunkler Backdrop) darüber</li>
+  <li class="ok"><strong>Flüssiger Übergang Weiß → Electron</strong> — <code>finish()</code> neu: Flash blendet in 420ms auf weiß (fill forwards), dann fadet das gesamte Overlay (<code>.gw</code>) in 650ms <code>ease-out</code> aus → Website erscheint weich statt hartem Cut; <code>complete</code> erst nach Fade-Ende</li>
+  <li class="ok">Live verifiziert: vor Klick <code>videoOpacity 1</code>/<code>readyState 4</code>, nach Ende Overlay entfernt + 6 Cards sichtbar, keine Errors</li>
+</ul>
+
+<h3>Status Gift-Animation</h3>
+<ul>
+  <li class="ok"><strong>Final</strong> — Video-Reveal abgeschlossen: erststart via <code>giftUnwrapSeen</code> (localStorage), <code>?gift=1</code> erzwingt, Replay-Button oben rechts, 2,5s Video, Übergang weich</li>
+  <li class="todo"><strong>Nächster Block</strong> — Electron-App übersetzen + umstrukturieren (Schritt für Schritt)</li>
+</ul>
 
 <h2>Protokoll vom 10.08.2026 (5. Session)</h2>
 <h3>Gift umgestellt auf Video</h3>
