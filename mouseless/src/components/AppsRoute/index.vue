@@ -3,10 +3,15 @@
     <template v-slot>
       <apps-list :apps="sortedApps" />
 
-      <button class="apps-route__settings" @click="showOptions">
-        <span class="apps-route__settings-icon">⚙</span>
-        Einstellungen
-      </button>
+      <div class="apps-route__actions">
+        <button class="apps-route__button" @click="goToOverview">
+          Übersicht
+        </button>
+        <button class="apps-route__button" @click="showOptions">
+          <span class="apps-route__button-icon">⚙</span>
+          Einstellungen
+        </button>
+      </div>
     </template>
   </page>
 </template>
@@ -55,6 +60,10 @@ export default {
   methods: {
     refreshApps() {
       this.apps = this.$db.apps
+    },
+
+    goToOverview() {
+      this.$router.push({ name: 'overview' })
     },
 
     showOptions() {

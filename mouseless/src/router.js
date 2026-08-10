@@ -4,6 +4,7 @@ import AppsRoute from '@/components/AppsRoute'
 import AppRoute from '@/components/AppRoute'
 import SetsRoute from '@/components/SetsRoute'
 import TestRoute from '@/components/TestRoute'
+import OverviewRoute from '@/components/OverviewRoute'
 
 const isWebTarget = process.env.VUE_APP_TARGET === 'web'
 
@@ -14,6 +15,11 @@ const routes = [
     path: '/',
     name: 'apps',
     component: AppsRoute,
+  },
+  {
+    path: '/overview',
+    name: 'overview',
+    component: OverviewRoute,
   },
 ]
 

@@ -1,12 +1,17 @@
 .apps-route {
 
-  &__settings {
+  &__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  &__button {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 100%;
-    margin-top: 24px;
+    flex: 1 1 auto;
     padding: 20px;
     border: none;
     border-radius: 12px;
@@ -25,7 +30,7 @@
     }
   }
 
-  &__settings-icon {
+  &__button-icon {
     font-size: 18px;
     line-height: 1;
   }
