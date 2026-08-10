@@ -1,7 +1,7 @@
 <template>
   <div class="shortcuts-route">
     <div class="shortcuts-route__loader" v-if="loading">
-      Loading…
+      Lädt…
     </div>
     <div class="shortcuts-route__header" v-if="!loading">
       <div class="shortcuts-route__header-bar">
@@ -15,7 +15,7 @@
       </div>
       <input
         class="shortcuts-route__search"
-        placeholder="Search…"
+        placeholder="Suchen…"
         v-model="query"
         type="text"
         autofocus
@@ -28,8 +28,8 @@
       <div class="shortcuts-route__placeholder" v-if="showPlaceholder">
         <img class="shortcuts-route__placeholder-image" src="~@/assets/images/logo.png">
         <p>
-          Open this to see the keyboard shortcuts for your current app.
-          Nothing to see for OhneMaus here though.
+          Öffne dies, um die Tastenkürzel für deine aktuelle App zu sehen.
+          Für OhneMaus gibt es hier nichts zu sehen.
         </p>
       </div>
       <template v-else>

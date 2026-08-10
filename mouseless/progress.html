@@ -18,9 +18,28 @@
 </head>
 <body>
 
-<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr) + (17:15 - 18:00 Uhr) + (18:30 - 19:00 Uhr) + (19:45 - 20:05 Uhr) + (20:15 - 21:00 Uhr) + (21:05 - 21:30 Uhr)</div>
+<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr) + (17:15 - 18:00 Uhr) + (18:30 - 19:00 Uhr) + (19:45 - 20:05 Uhr) + (20:15 - 21:00 Uhr) + (21:05 - 21:30 Uhr) + (21:45 - 22:45 Uhr)</div>
 
 <h1>OhneMaus — Protokoll & Fortschritt</h1>
+
+<h2>Protokoll vom 10.08.2026 (7. Session)</h2>
+<h3>Übersetzung + Umstrukturierung Schritt 1: Deutsch, keine Kategorien, Settings</h3>
+<ul>
+  <li class="ok"><strong>Alle UI-Texte deutsch</strong> — OptionsOverlay komplett neu (Einstellungen, Kürzel, Esc als ⌘, Menüleiste/Dock/Autostart, Lizenz, Gift, Gefahrenzone), AppsItem (<code>gemeistert</code>, <code>Kürzel</code>), SetsRoute (<code>Zuletzt</code>), ShortcutsRoute (Lädt…/Suchen…/Platzhalter), LicenseInput (<code>Erneut versuchen</code>)</li>
+  <li class="ok"><strong>Kategorien entfernt</strong> — AppsRoute rendert nur noch <code>apps-list</code>; alle Karten in Paaren (<code>AppsList</code>: <code>flex-wrap</code> + <code>width:50%</code>), Sortierung nach deutschem Locale (<code>localeCompare('de')</code>)</li>
+  <li class="ok"><strong>Fetter Einstellungen-Button</strong> — <code>⚙ Einstellungen</code> als Full-Width-Button unter den Karten (padding 20px, 15px fett, hover-Effekt), öffnet Overlay via <code>Event.emit('showOptions')</code></li>
+  <li class="ok"><strong>Settings vergrößert</strong> — Inhalt 17→20px, Label-Spalte 150→180px, Checkboxen 18→22px, Header 22→26px, Buttons 14→17px (+~20%)</li>
+  <li class="ok"><strong>Replay in Einstellungen</strong> — Replay-Button oben rechts entfernt; neuer Bereich <code>Gift</code> mit „Gift-Animation erneut ansehen" → <code>Event.emit('replayGift')</code>, Wrapper lauscht (Listener sauber abgemeldet in <code>beforeDestroy</code>)</li>
+  <li class="ok"><strong>Web-only Bereiche ausgeblendet</strong> — Kürzel (globaler Hotkey, nur Electron) und die kaputte Support-mailto-Sektion entfernt; Gefahrenzone-Label raus, Reset-Buttons bleiben (mit Trennlinie)</li>
+  <li class="ok"><strong>Apps-Reduktion Web</strong> — Gmail + Google Docs standardmäßig ausgeblendet, über Einstellungen (Sektion <code>Apps</code>) wieder aktivierbar (<code>Store hiddenApps</code>, kein Reload: <code>appsChanged</code>-Event → AppsRoute refresht live); Reihenfolge fix: macOS, Finder, Safari, Spotify</li>
+  <li class="ok">Live verifiziert (Headless-Chrome): 4 Cards in richtiger Reihenfolge, Settings ohne Kürzel/Support, Font 20px, Reset-Button da, Gmail-Toggle fügt Karte live hinzu, keine Console-Errors</li>
+  <li class="ok">gebaut + deployed: <code>css/app.38b9839e.css</code></li>
+</ul>
+
+<h3>Status</h3>
+<ul>
+  <li class="todo"><strong>Nächster Schritt</strong> — weitere Umstrukturierung (Sets/Übungsseite? Ladezeit? Deploy-Pipeline) je nach Wunsch</li>
+</ul>
 
 <h2>Protokoll vom 10.08.2026 (6. Session)</h2>
 <h3>Gift final: erster Frame + weicher Übergang</h3>

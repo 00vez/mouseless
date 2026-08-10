@@ -21,7 +21,7 @@
         <div class="license-input__error" v-if="isError">
           {{ errorMessage }}
           <button class="license-input__retry" @click="retry">
-            Retry
+            Erneut versuchen
           </button>
         </div>
       </transition>

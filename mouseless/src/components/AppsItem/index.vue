@@ -6,13 +6,13 @@
         {{ app.title }}
       </div>
       <div class="apps-item__meta">
-        <template v-if="learnedShortcuts.length">
+            <template v-if="learnedShortcuts.length">
           <div>
             <text-progress
               :value="learnedShortcuts.length"
               :max-value="shortcuts.length"
             />
-            mastered
+            gemeistert
           </div>
           <circle-progress
             :value="learnedShortcuts.length"
@@ -20,7 +20,7 @@
           />
         </template>
         <template v-else>
-          {{ shortcuts.length }} Shortcuts
+          {{ shortcuts.length }} Kürzel
         </template>
       </div>
     </div>

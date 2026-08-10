@@ -15,10 +15,6 @@
       v-if="showGift"
       @complete="onGiftComplete"
     />
-
-    <button v-if="!showGift" class="gw-replay" @click="showGift = true">
-      Wiederholen
-    </button>
   </div>
 </template>
 
@@ -81,6 +77,11 @@ export default {
       this.showOptions = false
     },
 
+    onReplayGift() {
+      this.showOptions = false
+      this.showGift = true
+    },
+
     onLog(event, log) {
       // eslint-disable-next-line
       console.log(log)
@@ -99,6 +100,7 @@ export default {
 
     Event.on('showOptions', this.onShowOptions)
     Event.on('hideOptions', this.onHideOptions)
+    Event.on('replayGift', this.onReplayGift)
 
     ipcRenderer.on('showOptions', this.onShowOptions)
     ipcRenderer.on('log', this.onLog)
@@ -107,6 +109,7 @@ export default {
   beforeDestroy() {
     Event.off('showOptions', this.onShowOptions)
     Event.off('hideOptions', this.onHideOptions)
+    Event.off('replayGift', this.onReplayGift)
 
     ipcRenderer.removeListener('showOptions', this.onShowOptions)
     ipcRenderer.removeListener('log', this.onLog)
@@ -114,30 +117,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.gw-replay {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 2147483001;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  color: rgba(242, 242, 242, 0.7);
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.2s ease-out;
-}
-.gw-replay:hover {
-  background: rgba(0, 0, 0, 0.7);
-  border-color: rgba(255, 215, 0, 0.5);
-  color: rgba(242, 242, 242, 0.9);
-}
-</style>
 <style lang="scss" src="./fonts.scss"></style>
 <style lang="scss" src="./base.scss"></style>
 <style lang="scss" src="./animations.scss"></style>

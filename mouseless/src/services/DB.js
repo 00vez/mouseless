@@ -10,6 +10,7 @@ import Run from '@/models/Run'
 const isWebTarget = process.env.VUE_APP_TARGET === 'web'
 
 const webAppWhitelist = ['safari', 'macos', 'finder', 'spotify', 'googledocs', 'gmail']
+const webHiddenAppsDefault = ['gmail', 'googledocs']
 
 export default new class {
 
@@ -40,6 +41,7 @@ export default new class {
         return isDebugApp === debugAppsOnly
       })
       .filter(data => !isWebTarget || webAppWhitelist.includes(data.id))
+      .filter(data => !isWebTarget || !Store.get('hiddenApps', webHiddenAppsDefault).includes(data.id))
       .map(data => this.createModel(App, data))
 
     return apps

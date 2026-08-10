@@ -2,23 +2,23 @@
   <div class="options-overlay" v-if="user.isVerified">
     <div class="options-overlay__header">
       <h2>
-        Options
+        Einstellungen
       </h2>
       <btn icon="close" @click.native="close" />
     </div>
 
     <div class="options-overlay__content">
-      <div class="options-overlay__section">
+      <div class="options-overlay__section" v-if="!isWebTarget">
         <div>
-          Shortcut
+          Kürzel
         </div>
         <div>
           <template v-if="isListening">
             <span class="grey">
-              Press any shortcut…
+              Drücke ein beliebiges Kürzel…
             </span>
             <btn @click.native="cancelListening">
-              Cancel
+              Abbrechen
             </btn>
           </template>
           <template v-else>
@@ -30,7 +30,7 @@
               />
             </span>
             <btn @click.native="listenToNewShortcut">
-              Change
+              Ändern
             </btn>
           </template>
         </div>
@@ -38,13 +38,13 @@
 
       <div class="options-overlay__section">
         <div>
-          Esc as Cmd
+          Esc als ⌘
         </div>
         <div>
           <label class="options-overlay__label">
             <input type="checkbox" v-model="escAsCmd">
             <span>
-              Use Escape key as ⌘
+              Escape-Taste als ⌘ verwenden
             </span>
           </label>
         </div>
@@ -52,16 +52,16 @@
 
       <div class="options-overlay__section" v-if="!isWebTarget">
         <div>
-          Menu bar
+          Menüleiste
         </div>
         <div>
           <label class="options-overlay__label">
             <input type="checkbox" v-model="showMenubar">
             <span>
-              Show in menu bar
+              In Menüleiste anzeigen
             </span>
             <btn @click.native="restart" is-red-text v-if="showMenubarRestartButton">
-              Restart App
+              App neu starten
             </btn>
           </label>
         </div>
@@ -69,16 +69,16 @@
 
       <div class="options-overlay__section" v-if="!isWebTarget">
         <div>
-          Dock icon
+          Dock-Symbol
         </div>
         <div>
           <label class="options-overlay__label">
             <input type="checkbox" v-model="showDockIcon">
             <span>
-              Show in dock
+              Im Dock anzeigen
             </span>
             <btn @click.native="restart" is-red-text v-if="showDockIconRestartButton">
-              Restart App
+              App neu starten
             </btn>
           </label>
         </div>
@@ -92,7 +92,7 @@
           <label class="options-overlay__label">
             <input type="checkbox" v-model="autoStart">
             <span>
-              Start app on launch
+              App beim Anmelden starten
             </span>
           </label>
         </div>
@@ -100,36 +100,59 @@
 
       <div class="options-overlay__section" v-if="user.email">
         <div>
-          License
+          Lizenz
         </div>
         <div>
-          Licensed to {{ user.email }}
+          Lizenziert für {{ user.email }}
+        </div>
+      </div>
+
+      <div class="options-overlay__section" v-if="isWebTarget">
+        <div>
+          Apps
+        </div>
+        <div>
+          <label class="options-overlay__label">
+            <input
+              type="checkbox"
+              :checked="!hiddenApps.includes('gmail')"
+              @change="toggleApp('gmail')"
+            >
+            <span>
+              Gmail
+            </span>
+          </label>
+          <label class="options-overlay__label">
+            <input
+              type="checkbox"
+              :checked="!hiddenApps.includes('googledocs')"
+              @change="toggleApp('googledocs')"
+            >
+            <span>
+              Google Docs
+            </span>
+          </label>
         </div>
       </div>
 
       <div class="options-overlay__section">
         <div>
-          Support
+          Gift
         </div>
         <div>
-          <a href="mailto:maus.angerer.duckdns.org">
-            maus.angerer.duckdns.org
-          </a>
+          <btn @click.native="replayGift">
+            Gift-Animation erneut ansehen
+          </btn>
         </div>
       </div>
 
-      <div class="options-overlay__section">
-        <div>
-          Danger Zone
-        </div>
-        <div>
-          <btn @click.native="resetProgress" is-red>
-            Reset Progress
-          </btn>
-          <btn @click.native="resetAll" is-red v-if="isDevelopment">
-            Reset All
-          </btn>
-        </div>
+      <div class="options-overlay__section options-overlay__section--danger">
+        <btn @click.native="resetProgress" is-red>
+          Fortschritt zurücksetzen
+        </btn>
+        <btn @click.native="resetAll" is-red v-if="isDevelopment">
+          Alles zurücksetzen
+        </btn>
       </div>
     </div>
   </div>
@@ -164,6 +187,7 @@ export default {
       showDockIconRestartButton: false,
       showMenubarRestartButton: false,
       keyboard: null,
+      hiddenApps: Store.get('hiddenApps', ['gmail', 'googledocs']),
       shortcut: Store.get('shortcut'),
       escAsCmd: Store.get('escAsCmd', false),
       user: User,
@@ -202,15 +226,20 @@ export default {
       Event.emit('hideOptions')
     },
 
+    replayGift() {
+      Event.emit('replayGift')
+      this.close()
+    },
+
     resetProgress() {
-      if (confirm('Do you really want to reset your progress?')) { // eslint-disable-line
+      if (confirm('Möchtest du deinen Fortschritt wirklich zurücksetzen?')) { // eslint-disable-line
         Store.delete('runs')
         window.location.reload()
       }
     },
 
     resetAll() {
-      if (confirm('Do you really want to reset everything?')) { // eslint-disable-line
+      if (confirm('Möchtest du wirklich alles zurücksetzen?')) { // eslint-disable-line
         Store.clear()
         window.location.reload()
       }
@@ -236,6 +265,17 @@ export default {
     cancelListening() {
       this.keyboard.destroy()
       this.keyboard = null
+    },
+
+    toggleApp(id) {
+      if (this.hiddenApps.includes(id)) {
+        this.hiddenApps = this.hiddenApps.filter(hidden => hidden !== id)
+      } else {
+        this.hiddenApps = [...this.hiddenApps, id]
+      }
+
+      Store.set('hiddenApps', this.hiddenApps)
+      Event.emit('appsChanged')
     },
   },
 }
