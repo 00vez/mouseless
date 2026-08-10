@@ -1,13 +1,14 @@
 .button {
   display: inline-flex;
-  padding: 6px;
+  align-items: center;
+  padding: 12px;
   margin-left: 8px;
-  color: rgba($colorWhite, 0.5);
-  font-size: 14px;
+  color: var(--color-text-muted);
+  font-size: 16px;
   font-weight: 600;
   line-height: 1;
-  border-radius: 6px;
-  background-color: rgba($colorWhite, 0.08);
+  border-radius: 10px;
+  background-color: var(--color-card);
   transition: color 0.2s $ease, background-color 0.2s $ease;
   -webkit-app-region: no-drag;
 
@@ -16,8 +17,8 @@
   }
 
   &:hover {
-    color: rgba($colorWhite, 1);
-    background-color: rgba($colorWhite, 0.12);
+    color: var(--color-text);
+    background-color: var(--color-card-hover);
   }
 
   &.is-yellow {
@@ -48,13 +49,13 @@
     background-color: transparent;
 
     &:hover {
-      color: rgba($colorWhite, 1);
-      background-color: rgba($colorWhite, 0.12);
+      color: var(--color-text);
+      background-color: var(--color-card-hover);
     }
   }
 
   &__icon + &__content {
-    margin-left: 2px;
+    margin-left: 4px;
   }
 
   & + & {

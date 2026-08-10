@@ -6,269 +6,269 @@ module.exports = {
   description: null,
   sets: [
     {
-      title: 'Essentials',
+      title: 'Grundlagen',
       id: 'essentials',
       version: 1,
       shortcuts: [
         {
-          title: 'Send',
+          title: 'Senden',
           keys: ['Meta', 'Enter'],
         },
         {
-          title: 'Archive',
+          title: 'Archivieren',
           keys: ['e'],
         },
         {
-          title: 'Mute conversation',
+          title: 'Konversation stummschalten',
           keys: ['m'],
         },
         {
-          title: 'Report as spam',
+          title: 'Als Spam melden',
           keys: ['!'],
         },
         {
-          title: 'Delete',
+          title: 'Löschen',
           keys: ['#'],
         },
         {
-          title: 'Forward',
+          title: 'Weiterleiten',
           keys: ['f'],
         },
         {
-          title: 'Undo last action',
+          title: 'Letzte Aktion rückgängig machen',
           keys: ['z'],
         },
       ],
     },
     {
-      title: 'Compose & Chat',
+      title: 'Verfassen & Chat',
       id: 'compose',
       version: 1,
       shortcuts: [
         {
-          title: 'Previous message in an open conversation',
+          title: 'Vorherige Nachricht in einer geöffneten Konversation',
           keys: ['p'],
         },
         {
-          title: 'Next message in an open conversation',
+          title: 'Nächste Nachricht in einer geöffneten Konversation',
           keys: ['n'],
         },
         {
-          title: 'Focus main window',
+          title: 'Hauptfenster fokussieren',
           keys: ['Shift', 'Escape'],
         },
         {
-          title: 'Focus latest chat or compose',
+          title: 'Neuesten Chat oder Verfassen-Fenster fokussieren',
           keys: ['Escape'],
         },
         {
-          title: 'Advance to the next chat or compose',
+          title: 'Zum nächsten Chat oder Verfassen-Fenster wechseln',
           keys: ['Control', '.'],
         },
         {
-          title: 'Advance to previous chat or compose',
+          title: 'Zum vorherigen Chat oder Verfassen-Fenster wechseln',
           keys: ['Control', ','],
         },
         {
-          title: 'Add cc recipients',
+          title: 'Cc-Empfänger hinzufügen',
           keys: ['Meta', 'Shift', 'c'],
         },
         {
-          title: 'Add bcc recipients',
+          title: 'Bcc-Empfänger hinzufügen',
           keys: ['Meta', 'Shift', 'b'],
         },
         {
-          title: 'Access custom from',
+          title: 'Benutzerdefiniertes Von-Feld verwenden',
           keys: ['Meta', 'Shift', 'f'],
         },
         {
-          title: 'Insert a link',
+          title: 'Link einfügen',
           keys: ['Meta', 'k'],
         },
         {
-          title: 'Go to next misspelled word',
+          title: 'Zum nächsten falsch geschriebenen Wort gehen',
           keys: ['Meta', ';'],
         },
         {
-          title: 'Open spelling suggestions',
+          title: 'Rechtschreibvorschläge öffnen',
           keys: ['Meta', 'm'],
         },
       ],
     },
     {
-      title: 'Formatting Text',
+      title: 'Textformatierung',
       id: 'formatting',
       version: 1,
       shortcuts: [
         {
-          title: 'Previous font',
+          title: 'Vorherige Schriftart',
           keys: ['Meta', 'Shift', '5'],
         },
         {
-          title: 'Next font',
+          title: 'Nächste Schriftart',
           keys: ['Meta', 'Shift', '6'],
         },
         {
-          title: 'Decrease text size',
+          title: 'Textgröße verkleinern',
           keys: ['Meta', 'Shift', '-'],
         },
         {
-          title: 'Increase text size',
+          title: 'Textgröße vergrößern',
           keys: [
             ['Meta', 'Shift', '='],
             ['Meta', 'Shift', '+'],
           ],
         },
         {
-          title: 'Bold',
+          title: 'Fett',
           keys: ['Meta', 'b'],
         },
         {
-          title: 'Italics',
+          title: 'Kursiv',
           keys: ['Meta', 'i'],
         },
         {
-          title: 'Underline',
+          title: 'Unterstreichen',
           keys: ['Meta', 'u'],
         },
         {
-          title: 'Numbered list',
+          title: 'Nummerierte Liste',
           keys: ['Meta', 'Shift', '7'],
         },
         {
-          title: 'Bulleted list',
+          title: 'Aufzählungsliste',
           keys: ['Meta', 'Shift', '8'],
         },
         {
-          title: 'Quote',
+          title: 'Zitat',
           keys: ['Meta', 'Shift', '9'],
         },
         {
-          title: 'Indent less',
+          title: 'Weniger einrücken',
           keys: ['Meta', '['],
         },
         {
-          title: 'Indent more',
+          title: 'Mehr einrücken',
           keys: ['Meta', ']'],
         },
         {
-          title: 'Align left',
+          title: 'Links ausrichten',
           keys: ['Meta', 'Shift', 'l'],
         },
         {
-          title: 'Align center',
+          title: 'Zentrieren',
           keys: ['Meta', 'Shift', 'e'],
         },
         {
-          title: 'Align right',
+          title: 'Rechts ausrichten',
           keys: ['Meta', 'Shift', 'r'],
         },
         {
-          title: 'Remove formatting',
+          title: 'Formatierung entfernen',
           keys: ['Meta', '\\'],
         },
       ],
     },
     {
-      title: 'Reply',
+      title: 'Antworten',
       id: 'reply',
       version: 1,
       shortcuts: [
         {
-          title: 'Reply',
+          title: 'Antworten',
           keys: ['r'],
         },
         {
-          title: 'Reply in a new window',
+          title: 'In neuem Fenster antworten',
           keys: ['Shift', 'r'],
         },
         {
-          title: 'Reply all',
+          title: 'Allen antworten',
           keys: ['a'],
         },
         {
-          title: 'Reply all in a new window',
+          title: 'Allen in einem neuen Fenster antworten',
           keys: ['Shift', 'a'],
         },
       ],
     },
     {
-      title: 'Mark As',
+      title: 'Als markieren',
       id: 'mark-as',
       version: 1,
       shortcuts: [
         {
-          title: 'Mark as read',
+          title: 'Als gelesen markieren',
           keys: ['Shift', 'i'],
         },
         {
-          title: 'Mark as unread',
+          title: 'Als ungelesen markieren',
           keys: ['Shift', 'u'],
         },
         {
-          title: 'Mark unread from the selected message',
+          title: 'Ab der ausgewählten Nachricht als ungelesen markieren',
           keys: ['_'],
         },
         {
-          title: 'Mark as important',
+          title: 'Als wichtig markieren',
           keys: [
             ['+'],
             ['='],
           ],
         },
         {
-          title: 'Mark as not important',
+          title: 'Als nicht wichtig markieren',
           keys: ['-'],
         },
       ],
     },
     {
-      title: 'Actions',
+      title: 'Aktionen',
       id: 'actions',
       version: 1,
       shortcuts: [
         {
-          title: 'Move focus to toolbar',
+          title: 'Fokus auf die Symbolleiste bewegen',
           keys: [','],
         },
         {
-          title: 'Select conversation',
+          title: 'Konversation auswählen',
           keys: ['x'],
         },
         {
-          title: 'Toggle star/rotate among superstars',
+          title: 'Stern setzen/zwischen Supersternen wechseln',
           keys: ['s'],
         },
         {
-          title: 'Forward in a new window',
+          title: 'In neuem Fenster weiterleiten',
           keys: ['Shift', 'f'],
         },
         {
-          title: 'Update conversation',
+          title: 'Konversation aktualisieren',
           keys: ['Shift', 'n'],
         },
         {
-          title: 'Archive conversation and go previous',
+          title: 'Konversation archivieren und zur vorherigen gehen',
           keys: ['['],
         },
         {
-          title: 'Archive conversation and go next',
+          title: 'Konversation archivieren und zur nächsten gehen',
           keys: [']'],
         },
         {
-          title: 'Snooze',
+          title: 'Schlummern',
           keys: ['b'],
         },
         {
-          title: 'Expand entire conversation',
+          title: 'Gesamte Konversation erweitern',
           keys: [';'],
         },
         {
-          title: 'Collapse entire conversation',
+          title: 'Gesamte Konversation einklappen',
           keys: [':'],
         },
         {
-          title: 'Add conversation to Tasks',
+          title: 'Konversation zu Aufgaben hinzufügen',
           keys: ['Shift', 't'],
         },
       ],
@@ -324,15 +324,15 @@ module.exports = {
         //   keys: ['g', 'p'],
         // },
         {
-          title: 'Back to threadlist',
+          title: 'Zurück zur Threadliste',
           keys: ['u'],
         },
         {
-          title: 'Newer conversation',
+          title: 'Neuere Konversation',
           keys: ['k'],
         },
         {
-          title: 'Older conversation',
+          title: 'Ältere Konversation',
           keys: ['j'],
         },
         // TODO: Two variants
@@ -341,50 +341,50 @@ module.exports = {
         //   keys: ['o or Enter'],
         // },
         {
-          title: 'Go to next Inbox section',
+          title: 'Zum nächsten Posteingangsbereich gehen',
           keys: ['`'],
         },
         {
-          title: 'Go to previous Inbox section',
+          title: 'Zum vorherigen Posteingangsbereich gehen',
           keys: ['~'],
         },
       ],
     },
     {
-      title: 'Application',
+      title: 'Anwendung',
       id: 'application',
       version: 1,
       shortcuts: [
         {
-          title: 'Compose',
+          title: 'Verfassen',
           keys: ['c'],
         },
         {
-          title: 'Compose in a new tab',
+          title: 'In neuem Tab verfassen',
           keys: ['d'],
         },
         {
-          title: 'Search mail',
+          title: 'E-Mail durchsuchen',
           keys: ['/'],
         },
         {
-          title: 'Search chat contacts',
+          title: 'Chat-Kontakte durchsuchen',
           keys: ['g'],
         },
         {
-          title: 'Open "more actions" menu',
+          title: 'Menü „Weitere Aktionen“ öffnen',
           keys: ['.'],
         },
         {
-          title: 'Open "move to" menu',
+          title: 'Menü „Verschieben nach“ öffnen',
           keys: ['v'],
         },
         {
-          title: 'Open "label as" menu',
+          title: 'Menü „Label als“ öffnen',
           keys: ['l'],
         },
         {
-          title: 'Open keyboard shortcut help',
+          title: 'Hilfe zu Tastenkürzeln öffnen',
           keys: ['?'],
         },
       ],

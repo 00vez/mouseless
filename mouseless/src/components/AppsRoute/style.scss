@@ -11,8 +11,8 @@
     padding: 20px;
     border: none;
     border-radius: 12px;
-    background-color: rgba($colorWhite, 0.1);
-    color: $colorWhite;
+    background-color: var(--color-card-10);
+    color: var(--color-text);
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -22,7 +22,7 @@
 
     &:hover,
     &:focus {
-      background-color: rgba($colorWhite, 0.16);
+      background-color: var(--color-card-16);
     }
   }
 

@@ -24,11 +24,11 @@
     }
 
     &:disabled {
-      color: rgba($colorWhite, 0.5);
+      color: var(--color-text-muted);
     }
 
     &::placeholder {
-      color: rgba($colorWhite, 0.2);
+      color: var(--color-text-faint);
     }
   }
 

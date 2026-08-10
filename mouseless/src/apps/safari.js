@@ -5,32 +5,32 @@ module.exports = {
   category: 'Utility',
   sets: [
     {
-      title: 'Scrolling',
+      title: 'Scrollen',
       id: 'scrolling',
       version: 1,
       shortcuts: [
         {
-          title: 'Scroll up',
+          title: 'Nach oben scrollen',
           keys: ['ArrowUp'],
         },
         {
-          title: 'Scroll down in larger increments',
+          title: 'Weiter nach unten scrollen',
           keys: ['Alt', 'ArrowDown'],
         },
         {
-          title: 'Scroll down a screen',
+          title: 'Eine Bildschirmlänge nach unten scrollen',
           keys: ['Space'],
         },
         {
-          title: 'Scroll up a screen',
+          title: 'Eine Bildschirmlänge nach oben scrollen',
           keys: ['Shift', 'Space'],
         },
         {
-          title: 'Scroll to the top-left corner of the page',
+          title: 'Zur oberen linken Ecke der Seite scrollen',
           keys: ['Meta', 'ArrowUp'],
         },
         {
-          title: 'Scroll to the bottom-left corner of the page',
+          title: 'Zur unteren linken Ecke der Seite scrollen',
           keys: ['Meta', 'ArrowDown'],
         },
       ],
@@ -41,23 +41,23 @@ module.exports = {
       version: 1,
       shortcuts: [
         {
-          title: 'Show all tabs',
+          title: 'Alle Tabs anzeigen',
           keys: ['Shift', 'Meta', '\\'],
         },
         {
-          title: 'Make the next tab the active tab',
+          title: 'Nächsten Tab aktivieren',
           keys: ['Control', 'Tab'],
         },
         {
-          title: 'Make the previous tab the active tab',
+          title: 'Vorherigen Tab aktivieren',
           keys: ['Control', 'Shift', 'Tab'],
         },
         {
-          title: 'Select the second tab',
+          title: 'Zweiten Tab auswählen',
           keys: ['Meta', '2'],
         },
         {
-          title: 'Reopen the last tab you closed',
+          title: 'Zuletzt geschlossenen Tab wieder öffnen',
           keys: ['Shift', 'Meta', 't'],
         },
       ],
@@ -68,72 +68,72 @@ module.exports = {
       version: 1,
       shortcuts: [
         {
-          title: 'Zoom in',
+          title: 'Vergrößern',
           keys: [
             ['Meta', '='],
             ['Meta', '+'],
           ],
         },
         {
-          title: 'Zoom out',
+          title: 'Verkleinern',
           keys: ['Meta', '-'],
         },
         {
-          title: 'Actual size',
+          title: 'Originalgröße',
           keys: ['Meta', '0'],
         },
         {
-          title: 'Exit full-screen view',
+          title: 'Vollbildansicht beenden',
           keys: ['Escape'],
         },
       ],
     },
     {
-      title: 'Reading List',
+      title: 'Leseliste',
       id: 'reading',
       version: 1,
       shortcuts: [
         {
-          title: 'Toggle the Reading List sidebar',
+          title: 'Seitenleiste der Leseliste ein- oder ausblenden',
           keys: ['Control', 'Meta', '2'],
         },
         {
-          title: 'Add the current page to the Reading List',
+          title: 'Aktuelle Seite zur Leseliste hinzufügen',
           keys: ['Shift', 'Meta', 'd'],
         },
       ],
     },
     {
-      title: 'Bookmarks',
+      title: 'Lesezeichen',
       id: 'bookmarks',
       version: 1,
       shortcuts: [
         {
-          title: 'Toggle the Bookmarks sidebar',
+          title: 'Lesezeichen-Seitenleiste ein- oder ausblenden',
           keys: ['Control', 'Meta', '1'],
         },
         {
-          title: 'Select the next bookmark or folder',
+          title: 'Nächstes Lesezeichen oder nächsten Ordner auswählen',
           keys: ['ArrowDown'],
         },
         {
-          title: 'Open the selected bookmark',
+          title: 'Ausgewähltes Lesezeichen öffnen',
           keys: ['Space'],
         },
         {
-          title: 'Open the selected folder',
+          title: 'Ausgewählten Ordner öffnen',
           keys: ['ArrowRight'],
         },
         {
-          title: 'Close the selected folder',
+          title: 'Ausgewählten Ordner schließen',
           keys: ['ArrowLeft'],
         },
         {
-          title: 'Change the name or address of a bookmark',
+          title: 'Name oder Adresse eines Lesezeichens ändern',
           keys: ['Enter'],
         },
         {
-          title: 'Cancel editing a bookmark name in the sidebar',
+          title: 'Bearbeiten eines Lesezeichennamens in der Seitenleiste abbrechen',
           keys: ['Escape'],
         },
         // duplicated
@@ -142,22 +142,22 @@ module.exports = {
         //   keys: ['Enter'],
         // },
         {
-          title: 'Delete a bookmark',
+          title: 'Lesezeichen löschen',
           keys: ['Backspace'],
         },
       ],
     },
     {
-      title: 'Miscellaneous',
+      title: 'Verschiedenes',
       id: 'miscellaneous',
       version: 1,
       shortcuts: [
         {
-          title: 'Highlight the next item on a web page',
+          title: 'Nächstes Objekt auf einer Webseite hervorheben',
           keys: ['Tab'],
         },
         {
-          title: 'Close Reader',
+          title: 'Lesemodus schließen',
           keys: ['Escape'],
         },
       ],

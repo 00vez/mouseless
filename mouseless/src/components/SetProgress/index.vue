@@ -56,7 +56,7 @@ export default {
 
   methods: {
     setMessage() {
-      this.message = `${this.learnedCount} mastered`
+      this.message = `${this.learnedCount} gemeistert`
 
       clearTimeout(this.timeout)
       this.timeout = setTimeout(() => {

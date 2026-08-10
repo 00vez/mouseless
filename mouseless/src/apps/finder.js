@@ -6,36 +6,36 @@ module.exports = {
   description: null,
   sets: [
     {
-      title: 'Essentials',
+      title: 'Grundlagen',
       id: 'essentials',
       version: 2,
       shortcuts: [
         {
-          title: 'Create a new folder',
+          title: 'Neuen Ordner erstellen',
           keys: ['Shift', 'Meta', 'n'],
         },
         {
-          title: 'Open a new Finder window',
+          title: 'Neues Finder-Fenster öffnen',
           keys: ['Meta', 'n'],
         },
         {
-          title: 'Open a new tab',
+          title: 'Neuen Tab öffnen',
           keys: ['Meta', 't'],
         },
         {
-          title: 'Create a new Smart Folder',
+          title: 'Neuen Smart-Ordner erstellen',
           keys: ['Alt', 'Meta', 'n'],
         },
         {
-          title: 'Duplicate the selected files',
+          title: 'Ausgewählte Dateien duplizieren',
           keys: ['Meta', 'd'],
         },
         {
-          title: 'Show the Get Info window for a selected file',
+          title: 'Info-Fenster für eine ausgewählte Datei anzeigen',
           keys: ['Meta', 'i'],
         },
         {
-          title: 'Start a Spotlight search in the Finder window',
+          title: 'Spotlight-Suche im Finder-Fenster starten',
           keys: ['Meta', 'f'],
         },
       ],
@@ -46,11 +46,11 @@ module.exports = {
       version: 1,
       shortcuts: [
         {
-          title: 'Use Quick Look to preview the selected files',
+          title: 'Quick Look zum Vorschauen der ausgewählten Dateien verwenden',
           keys: ['Space'],
         },
         {
-          title: 'View a Quick Look slideshow of the selected files',
+          title: 'Quick-Look-Diashow der ausgewählten Dateien ansehen',
           keys: ['Alt', 'Space'],
         },
       ],
@@ -61,66 +61,66 @@ module.exports = {
       version: 1,
       shortcuts: [
         {
-          title: 'Go to the previous folder',
+          title: 'Zum vorherigen Ordner gehen',
           keys: ['Meta', '['],
         },
         {
-          title: 'Go to the next folder',
+          title: 'Zum nächsten Ordner gehen',
           keys: ['Meta', ']'],
         },
         {
-          title: 'Open a Go to Folder window',
+          title: 'Fenster „Gehe zu Ordner“ öffnen',
           keys: ['Shift', 'Meta', 'g'],
         },
         {
-          title: 'Open the selected item',
+          title: 'Ausgewähltes Objekt öffnen',
           keys: ['Meta', 'ArrowDown'],
         },
         {
-          title: 'Open the folder that contains the current folder',
+          title: 'Ordner öffnen, der den aktuellen Ordner enthält',
           keys: ['Meta', 'ArrowUp'],
         },
         {
-          title: 'Open the folder that contains the current folder in a new window',
+          title: 'Ordner, der den aktuellen Ordner enthält, in einem neuen Fenster öffnen',
           keys: ['Meta', 'Control', 'ArrowUp'],
         },
       ],
     },
     {
-      title: 'System Folders',
+      title: 'Systemordner',
       id: 'system-folders',
       version: 1,
       shortcuts: [
         {
-          title: 'Open the Home folder of the current macOS user account',
+          title: 'Home-Ordner des aktuellen macOS-Benutzerkontos öffnen',
           keys: ['Shift', 'Meta', 'h'],
         },
         {
-          title: 'Open the Computer window',
+          title: 'Computer-Fenster öffnen',
           keys: ['Shift', 'Meta', 'c'],
         },
         {
-          title: 'Open the Network window',
+          title: 'Netzwerk-Fenster öffnen',
           keys: ['Shift', 'Meta', 'k'],
         },
         {
-          title: 'Open the desktop folder',
+          title: 'Desktop-Ordner öffnen',
           keys: ['Shift', 'Meta', 'd'],
         },
         {
-          title: 'Open the Utilities folder',
+          title: 'Ordner „Dienstprogramme“ öffnen',
           keys: ['Shift', 'Meta', 'u'],
         },
         {
-          title: 'Open the Downloads folder',
+          title: 'Ordner „Downloads“ öffnen',
           keys: ['Alt', 'Meta', 'l'],
         },
         {
-          title: 'Open the Documents folder',
+          title: 'Ordner „Dokumente“ öffnen',
           keys: ['Shift', 'Meta', 'o'],
         },
         {
-          title: 'Open iCloud Drive',
+          title: 'iCloud Drive öffnen',
           keys: ['Shift', 'Meta', 'i'],
         },
       ],
@@ -131,105 +131,105 @@ module.exports = {
       version: 2,
       shortcuts: [
         {
-          title: 'View the items in the Finder window as icons',
+          title: 'Objekte im Finder-Fenster als Symbole anzeigen',
           keys: ['Meta', '1'],
         },
         {
-          title: 'View the items in a Finder window as a list',
+          title: 'Objekte im Finder-Fenster als Liste anzeigen',
           keys: ['Meta', '2'],
         },
         {
-          title: 'View the items in a Finder window in columns',
+          title: 'Objekte im Finder-Fenster in Spalten anzeigen',
           keys: ['Meta', '3'],
         },
         {
-          title: 'View the items in a Finder window with Cover Flow',
+          title: 'Objekte im Finder-Fenster mit Cover Flow anzeigen',
           keys: ['Meta', '4'],
         },
         {
-          title: 'Show or hide the Preview pane in Finder windows',
+          title: 'Vorschaubereich in Finder-Fenstern ein- oder ausblenden',
           keys: ['Shift', 'Meta', 'p'],
         },
         {
-          title: 'Show or hide the tab bar in Finder windows',
+          title: 'Tab-Leiste in Finder-Fenstern ein- oder ausblenden',
           keys: ['Shift', 'Meta', 't'],
         },
         {
-          title: 'Hide or show the path bar in Finder windows',
+          title: 'Pfadleiste in Finder-Fenstern aus- oder einblenden',
           keys: ['Alt', 'Meta', 'p'],
         },
         {
-          title: 'Hide or show the Sidebar in Finder windows',
+          title: 'Seitenleiste in Finder-Fenstern aus- oder einblenden',
           keys: ['Alt', 'Meta', 's'],
         },
         {
-          title: 'Hide or show the status bar in Finder windows',
+          title: 'Statusleiste in Finder-Fenstern aus- oder einblenden',
           keys: ['Meta', '/'],
         },
         {
-          title: 'Show or hide the toolbar when a single tab is open in the current Finder window',
+          title: 'Symbolleiste ein- oder ausblenden, wenn ein einzelner Tab im aktuellen Finder-Fenster geöffnet ist',
           keys: ['Alt', 'Meta', 't'],
         },
         {
-          title: 'Show View Options',
+          title: 'Anzeigeoptionen zeigen',
           keys: ['Meta', 'j'],
         },
       ],
     },
     {
-      title: 'Trash',
+      title: 'Papierkorb',
       id: 'trash',
       version: 1,
       shortcuts: [
         {
-          title: 'Move the selected item to the Trash',
+          title: 'Ausgewähltes Objekt in den Papierkorb bewegen',
           keys: ['Meta', 'Backspace'],
         },
         {
-          title: 'Empty the Trash',
+          title: 'Papierkorb leeren',
           keys: ['Shift', 'Meta', 'Backspace'],
         },
         {
-          title: 'Empty the Trash without confirmation dialog',
+          title: 'Papierkorb ohne Bestätigungsdialog leeren',
           keys: ['Alt', 'Shift', 'Meta', 'Backspace'],
         },
       ],
     },
     {
-      title: 'Miscellaneous',
+      title: 'Verschiedenes',
       id: 'miscellaneous',
       version: 1,
       shortcuts: [
         {
-          title: 'Eject the selected disk or volume',
+          title: 'Ausgewählten Datenträger oder Volume auswerfen',
           keys: ['Meta', 'e'],
         },
         {
-          title: 'Open the Recents window, showing all of the files you viewed or changed recently',
+          title: 'Fenster „Zuletzt“ öffnen, das alle zuletzt angezeigten oder geänderten Dateien zeigt',
           keys: ['Shift', 'Meta', 'f'],
         },
         {
-          title: 'Open the AirDrop window',
+          title: 'AirDrop-Fenster öffnen',
           keys: ['Shift', 'Meta', 'r'],
         },
         {
-          title: 'Add selected Finder item to the Dock',
+          title: 'Ausgewähltes Finder-Objekt zum Dock hinzufügen',
           keys: ['Control', 'Shift', 'Meta', 't'],
         },
         {
-          title: 'Add the selected item to the sidebar',
+          title: 'Ausgewähltes Objekt zur Seitenleiste hinzufügen',
           keys: ['Control', 'Meta', 't'],
         },
         {
-          title: 'Open the Connect to Server window',
+          title: 'Fenster „Mit Server verbinden“ öffnen',
           keys: ['Meta', 'k'],
         },
         {
-          title: 'Make an alias of the selected item',
+          title: 'Alias des ausgewählten Objekts erstellen',
           keys: ['Meta', 'l'],
         },
         {
-          title: 'Move the files in the Clipboard to the current location',
+          title: 'Dateien aus der Zwischenablage an den aktuellen Ort bewegen',
           keys: ['Alt', 'Meta', 'v'],
         },
       ],

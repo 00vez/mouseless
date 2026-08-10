@@ -1,6 +1,6 @@
 .license-overlay {
-  background-color: $colorDarkGrey;
-  color: white;
+  background-color: var(--color-surface);
+  color: var(--color-text);
   border-radius: 12px 12px 0 0;
   text-align: center;
   display: flex;
@@ -17,7 +17,7 @@
     flex: 0 0 auto;
     font-size: 14px;
     font-weight: 600;
-    color: rgba($colorWhite, 0.5);
+    color: var(--color-text-muted);
 
     > * {
       margin: 0 4px;

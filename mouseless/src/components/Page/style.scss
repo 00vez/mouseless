@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: $colorBlack;
+  background-color: var(--color-bg);
   border-radius: 30px;
 
   &__header {
@@ -14,12 +14,12 @@
     width: 100%;
     flex: 0 0 auto;
     height: 38px;
-    background-color: $colorBlack;
-    border-bottom: 1px solid $colorBlack;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
 
     &.has-blur {
       backdrop-filter: blur(20px);
-      background-color: rgba($colorBlack, 0.5);
+      background-color: var(--color-bg-blur);
     }
   }
 
@@ -84,7 +84,7 @@
     position: absolute;
     top: 6px;
     right: 14px;
-    fill: $colorWhite;
+    fill: var(--color-text);
     cursor: pointer;
     opacity: 0.4;
     transition: fill 0.2s $ease;

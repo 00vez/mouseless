@@ -2,6 +2,7 @@ import Vue from 'vue'
 import keyboardSymbol from 'keyboard-symbol'
 import router from '@/router'
 import DB from '@/services/DB'
+import Store from '@/services/Store'
 import CleanUp from '@/services/CleanUp'
 import HealthCheck from '@/services/HealthCheck'
 import Wrapper from '@/components/Wrapper'
@@ -22,6 +23,8 @@ Vue.filter('uppercase', value => {
 })
 
 CleanUp.run()
+
+document.body.classList.toggle('is-light', Store.get('theme', 'dark') === 'light')
 
 if (process.env.NODE_ENV === 'development') {
   HealthCheck.run()

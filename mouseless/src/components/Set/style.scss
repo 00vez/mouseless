@@ -1,7 +1,7 @@
 .set {
   display: flex;
   align-items: center;
-  background-color: rgba($colorWhite, 0.08);
+  background-color: var(--color-card);
   padding: 16px 20px;
   margin-bottom: 2px;
   transition: background-color 0.2s $ease;
@@ -19,7 +19,7 @@
 
   &:hover,
   &:focus {
-    background-color: rgba($colorWhite, 0.12);
+    background-color: var(--color-card-hover);
   }
 
   &__content {
@@ -39,7 +39,7 @@
     align-items: center;
     font-size: 12px;
     font-weight: 700;
-    color: rgba($colorWhite, 0.5);
+    color: var(--color-text-muted);
   }
 
   &__progress {

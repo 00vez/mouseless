@@ -6,67 +6,67 @@ module.exports = {
   description: null,
   sets: [
     {
-      title: 'Essentials',
+      title: 'Grundlagen',
       id: 'essentials',
       version: 1,
       shortcuts: [
         {
-          title: 'Create new playlist',
+          title: 'Neue Wiedergabeliste erstellen',
           keys: ['Meta', 'n'],
         },
         {
-          title: 'Select all',
+          title: 'Alle auswählen',
           keys: ['Meta', 'a'],
         },
         {
-          title: 'Play/pause',
+          title: 'Wiedergabe/Pause',
           keys: ['Space'],
         },
         {
-          title: 'Repeat',
+          title: 'Wiederholen',
           keys: ['Meta', 'r'],
         },
         {
-          title: 'Shuffle',
+          title: 'Zufallswiedergabe',
           keys: ['Meta', 's'],
         },
         {
-          title: 'Filter (in Songs and Playlists)',
+          title: 'Filtern (bei Songs und Wiedergabelisten)',
           keys: ['Meta', 'f'],
         },
         {
-          title: 'Play selected row',
+          title: 'Ausgewählte Zeile abspielen',
           keys: ['Enter'],
         },
         {
-          title: 'Next track',
+          title: 'Nächster Titel',
           keys: ['Control', 'Meta', 'ArrowRight'],
         },
         {
-          title: 'Previous track',
+          title: 'Vorheriger Titel',
           keys: ['Control', 'Meta', 'ArrowLeft'],
         },
       ],
     },
     {
-      title: 'Volume',
+      title: 'Lautstärke',
       id: 'volume',
       version: 1,
       shortcuts: [
         {
-          title: 'Volume up',
+          title: 'Lauter',
           keys: ['Meta', 'ArrowUp'],
         },
         {
-          title: 'Volume down',
+          title: 'Leiser',
           keys: ['Meta', 'ArrowDown'],
         },
         {
-          title: 'Mute',
+          title: 'Stummschalten',
           keys: ['Meta', 'Shift', 'ArrowDown'],
         },
         {
-          title: 'Max volume',
+          title: 'Maximale Lautstärke',
           keys: ['Meta', 'Shift', 'ArrowUp'],
         },
       ],
@@ -77,65 +77,65 @@ module.exports = {
       version: 1,
       shortcuts: [
         {
-          title: 'Go back',
+          title: 'Zurück',
           keys: ['Meta', 'Alt', 'ArrowLeft'],
         },
         {
-          title: 'Go forward',
+          title: 'Vorwärts',
           keys: ['Meta', 'Alt', 'ArrowRight'],
         },
       ],
     },
     {
-      title: 'Window',
+      title: 'Fenster',
       id: 'window',
       version: 1,
       shortcuts: [
         {
-          title: 'Quit',
+          title: 'Beenden',
           keys: ['Meta', 'q'],
         },
         {
-          title: 'Hide window',
+          title: 'Fenster ausblenden',
           keys: ['Meta', 'h'],
         },
         {
-          title: 'Hide other applications’ windows',
+          title: 'Fenster anderer Apps ausblenden',
           keys: ['Meta', 'Alt', 'h'],
         },
         {
-          title: 'Close window',
+          title: 'Fenster schließen',
           keys: ['Meta', 'w'],
         },
         {
-          title: 'Minimize window',
+          title: 'Fenster verkleinern',
           keys: ['Meta', 'm'],
         },
         {
-          title: 'Restore from minimized',
+          title: 'Aus dem verkleinerten Zustand wiederherstellen',
           keys: ['Meta', 'Alt', '1'],
         },
       ],
     },
     {
-      title: 'Miscellaneous',
+      title: 'Verschiedenes',
       id: 'miscellaneous',
       version: 1,
       shortcuts: [
         {
-          title: 'Logout active user',
+          title: 'Aktiven Benutzer abmelden',
           keys: ['Meta', 'Shift', 'w'],
         },
         {
-          title: 'Give focus to search field',
+          title: 'Fokus auf das Suchfeld setzen',
           keys: ['Meta', 'Alt', 'f'],
         },
         {
-          title: 'Preferences',
+          title: 'Einstellungen',
           keys: ['Meta', ','],
         },
         {
-          title: 'Show help',
+          title: 'Hilfe anzeigen',
           keys: ['Meta', 'Shift', '?'],
         },
       ],

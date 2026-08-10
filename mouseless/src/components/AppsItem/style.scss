@@ -1,8 +1,8 @@
 .apps-item {
   display: flex;
   flex-direction: column;
-  background-color: rgba($colorWhite, 0.08);
-  padding: 20px;
+  background-color: var(--color-card);
+  padding: 24px;
   border-radius: 12px;
   text-decoration: none;
   will-change: background-color;
@@ -10,7 +10,7 @@
 
   &:hover,
   &:focus {
-    background-color: rgba($colorWhite, 0.12);
+    background-color: var(--color-card-hover);
   }
 
   &:first-child {
@@ -19,11 +19,11 @@
 
   &__logo {
     flex: 0 0 auto;
-    height: 40px;
-    width: 40px;
+    height: 48px;
+    width: 48px;
     object-fit: contain;
     object-position: 0 0;
-    margin-bottom: 36px;
+    margin-bottom: 43px;
   }
 
   &__content {
@@ -31,17 +31,17 @@
   }
 
   &__title {
-    font-size: 24px;
+    font-size: 29px;
     line-height: 1.1;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
   }
 
   &__meta {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
-    color: rgba($colorWhite, 0.5);
+    color: var(--color-text-muted);
   }
 }

@@ -6,103 +6,103 @@ module.exports = {
   description: null,
   sets: [
     {
-      title: 'Essentials',
+      title: 'Grundlagen',
       id: 'essentials',
       version: 1,
       shortcuts: [
         {
-          title: 'Copy the selected item to the Clipboard',
+          title: 'Ausgewähltes Objekt in die Zwischenablage kopieren',
           keys: ['Meta', 'c'],
         },
         {
-          title: 'Paste the contents of the Clipboard',
+          title: 'Inhalt der Zwischenablage einfügen',
           keys: ['Meta', 'v'],
         },
         {
-          title: 'Undo the previous command',
+          title: 'Letzten Befehl widerrufen',
           keys: ['Meta', 'z'],
         },
         {
-          title: 'Redo',
+          title: 'Wiederholen',
           keys: ['Shift', 'Meta', 'z'],
         },
         {
-          title: 'Cut the selected item and copy it to the Clipboard',
+          title: 'Ausgewähltes Objekt ausschneiden und in die Zwischenablage kopieren',
           keys: ['Meta', 'x'],
         },
         {
-          title: 'Select All items',
+          title: 'Alle Objekte auswählen',
           keys: ['Meta', 'a'],
         },
         {
-          title: 'Save the current document',
+          title: 'Aktuelles Dokument sichern',
           keys: ['Meta', 's'],
         },
         {
-          title: 'Open a new tab',
+          title: 'Neuen Tab öffnen',
           keys: ['Meta', 't'],
         },
         {
-          title: 'Show the Character Viewer, from which you can choose emoji and other symbols',
+          title: 'Zeichenanzeige einblenden, aus der du Emoji und andere Symbole auswählen kannst',
           keys: ['Control', 'Meta', 'Space'],
         },
       ],
     },
     {
-      title: 'Windows',
+      title: 'Fenster',
       id: 'windows',
       version: 1,
       shortcuts: [
         {
-          title: 'Show all windows of the front app',
+          title: 'Alle Fenster der vorderen App anzeigen',
           keys: ['Control', 'ArrowDown'],
         },
         {
-          title: 'Hide the windows of the front app',
+          title: 'Fenster der vorderen App ausblenden',
           keys: ['Meta', 'h'],
         },
         {
-          title: 'Minimize all windows of the front app',
+          title: 'Alle Fenster der vorderen App verkleinern',
           keys: ['Alt', 'Meta', 'm'],
         },
         {
-          title: 'Close the front window',
+          title: 'Vorderes Fenster schließen',
           keys: ['Meta', 'w'],
         },
         {
-          title: 'Close all windows of the app',
+          title: 'Alle Fenster der App schließen',
           keys: ['Alt', 'Meta', 'w'],
         },
         {
-          title: 'Use the app in full screen',
+          title: 'App im Vollbild verwenden',
           keys: ['Control', 'Meta', 'f'],
         },
         {
-          title: 'View the front app but hide all other apps',
+          title: 'Vordere App anzeigen und alle anderen Apps ausblenden',
           keys: ['Alt', 'Meta', 'h'],
         },
         {
-          title: 'Minimize the front window to the Dock',
+          title: 'Vorderes Fenster im Dock verkleinern',
           keys: ['Meta', 'm'],
         },
       ],
     },
     {
-      title: 'Search',
+      title: 'Suchen',
       id: 'search',
       version: 1,
       shortcuts: [
         {
-          title: 'Find items in a document or open a Find window',
+          title: 'Objekte in einem Dokument suchen oder ein Suchfenster öffnen',
           keys: ['Meta', 'f'],
         },
         {
-          title: 'Find again',
-          description: 'Find the next occurrence of the item previously found',
+          title: 'Erneut suchen',
+          description: 'Findet das nächste Vorkommen des zuvor gefundenen Objekts',
           keys: ['Meta', 'g'],
         },
         {
-          title: 'Find the previous occurrence',
+          title: 'Vorheriges Vorkommen suchen',
           keys: ['Shift', 'Meta', 'g'],
         },
       ],
@@ -120,28 +120,28 @@ module.exports = {
     //   ],
     // },
     {
-      title: 'Miscellaneous',
+      title: 'Verschiedenes',
       id: 'miscellaneous',
       version: 1,
       shortcuts: [
         {
-          title: 'Show or hide the Dock',
+          title: 'Dock ein- oder ausblenden',
           keys: ['Alt', 'Meta', 'd'],
         },
         {
-          title: 'Open the selected item, or open a dialog to select a file to open',
+          title: 'Ausgewähltes Objekt öffnen oder ein Dialogfeld zum Auswählen einer zu öffnenden Datei öffnen',
           keys: ['Meta', 'o'],
         },
         {
-          title: 'Print the current document',
+          title: 'Aktuelles Dokument drucken',
           keys: ['Meta', 'p'],
         },
         {
-          title: 'Show or hide the Spotlight search field',
+          title: 'Spotlight-Suchfeld ein- oder ausblenden',
           keys: ['Meta', 'Space'],
         },
         {
-          title: 'Open preferences for the front app',
+          title: 'Einstellungen für die vordere App öffnen',
           keys: ['Meta', ','],
         },
       ],

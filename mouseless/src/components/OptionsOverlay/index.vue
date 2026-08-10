@@ -50,6 +50,24 @@
         </div>
       </div>
 
+      <div class="options-overlay__section">
+        <div>
+          Darstellung
+        </div>
+        <div>
+          <label class="options-overlay__label">
+            <input
+              type="checkbox"
+              :checked="isLight"
+              @change="toggleTheme"
+            >
+            <span>
+              Heller Modus
+            </span>
+          </label>
+        </div>
+      </div>
+
       <div class="options-overlay__section" v-if="!isWebTarget">
         <div>
           Menüleiste
@@ -188,6 +206,7 @@ export default {
       showMenubarRestartButton: false,
       keyboard: null,
       hiddenApps: Store.get('hiddenApps', ['gmail', 'googledocs']),
+      theme: Store.get('theme', 'dark'),
       shortcut: Store.get('shortcut'),
       escAsCmd: Store.get('escAsCmd', false),
       user: User,
@@ -213,11 +232,20 @@ export default {
     escAsCmd() {
       Store.set('escAsCmd', this.escAsCmd)
     },
+
+    theme() {
+      Store.set('theme', this.theme)
+      document.body.classList.toggle('is-light', this.theme === 'light')
+    },
   },
 
   computed: {
     isListening() {
       return !!this.keyboard
+    },
+
+    isLight() {
+      return this.theme === 'light'
     },
   },
 
@@ -265,6 +293,10 @@ export default {
     cancelListening() {
       this.keyboard.destroy()
       this.keyboard = null
+    },
+
+    toggleTheme() {
+      this.theme = this.theme === 'light' ? 'dark' : 'light'
     },
 
     toggleApp(id) {

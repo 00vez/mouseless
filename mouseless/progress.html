@@ -18,9 +18,19 @@
 </head>
 <body>
 
-<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr) + (17:15 - 18:00 Uhr) + (18:30 - 19:00 Uhr) + (19:45 - 20:05 Uhr) + (20:15 - 21:00 Uhr) + (21:05 - 21:30 Uhr) + (21:45 - 22:45 Uhr)</div>
+<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr) + (17:15 - 18:00 Uhr) + (18:30 - 19:00 Uhr) + (19:45 - 20:05 Uhr) + (20:15 - 21:00 Uhr) + (21:05 - 21:30 Uhr) + (21:45 - 23:30 Uhr)</div>
 
 <h1>OhneMaus — Protokoll & Fortschritt</h1>
+
+<h2>Protokoll vom 10.08.2026 (7. Session, Teil 2)</h2>
+<h3>Karten-Fragen komplett deutsch + fettere Buttons + Dark/Light-Theme</h3>
+<ul>
+  <li class="ok"><strong>Alle Frage-Titel der Web-Apps übersetzt</strong> — alle Sets/Shortcuts in <code>macos.js</code>, <code>finder.js</code>, <code>safari.js</code>, <code>spotify.js</code>, <code>gmail.js</code>, <code>googledocs.js</code> auf Deutsch (macOS: Grundlagen/Fenster/Suchen/Verschiedenes, Finder: Systemordner/Papierkorb/Quick Look …); SetProgress <code>mastered</code> → <code>gemeistert</code>; Doppel-Grep über src + dist: 0 englische Treffer (nur auskommentierte Blöcke)</li>
+  <li class="ok"><strong>Zurück-Buttons fetter</strong> — <code>Btn</code> Basis vergrößert (padding 6→12px, font 14→16px, radius 10px) → „Apps"/„Sets"-Back-Buttons klar größer; Settings-Buttons entsprechend angehoben; SkipButton 17→19px + padding 12px</li>
+  <li class="ok"><strong>Dark/Light-Theme</strong> — CSS-Variablen in <code>base.scss</code> (<code>:root</code> dunkle Defaults, <code>body.is-light</code> Overrides: bg #F5F5F7, Surface weiß, Text #1D1D1F, Karten/Keys invertiert); alle 15 SCSS-Dateien auf <code>var(--color-…)</code> umgestellt; Toggle „Heller Modus" in Einstellungen (Sektion <code>Darstellung</code>) → <code>Store theme</code> + <code>body.is-light</code>, wird in <code>main.js</code> beim Laden angewendet (kein Flash)</li>
+  <li class="ok">Live verifiziert: Toggle setzt body bg <code>rgb(245,245,247)</code>, Overlay weiß, Cards dunkel-getönt; Back-Button 16px/12px; Skip 19px/12px; keine Errors</li>
+  <li class="ok">gebaut + deployed: <code>css/app.b423ac3e.css</code></li>
+</ul>
 
 <h2>Protokoll vom 10.08.2026 (7. Session)</h2>
 <h3>Übersetzung + Umstrukturierung Schritt 1: Deutsch, keine Kategorien, Settings</h3>
