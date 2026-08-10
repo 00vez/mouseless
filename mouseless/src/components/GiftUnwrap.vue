@@ -1,3 +1,93 @@
+<template>
+  <div class="gw" tabindex="0">
+    <div class="gw__bg" />
+    <div class="gw__rays gw--rays-b" />
+    <div class="gw__rays gw--rays-f" />
+    <div class="gw__canvas">
+      <div class="gw__rings">
+        <div class="gw__ring gw--ring-hot" />
+        <div class="gw__ring gw--ring-hot" />
+      </div>
+    </div>
+
+    <div class="gw__scene">
+      <div class="gw__wobble gw--s3">
+        <div class="gw__pivot">
+          <div class="gw__rotor">
+            <div class="gw__box">
+              <div class="gw__face gw__face--front" style="transform: rotateY(0deg)" />
+              <div class="gw__face gw__face--back" style="transform: rotateY(180deg)" />
+              <div class="gw__face gw__face--left" style="transform: rotateY(-90deg)" />
+              <div class="gw__face gw__face--right" style="transform: rotateY(90deg)" />
+              <div class="gw__face gw__face--top" style="transform: rotateX(90deg)" />
+              <div class="gw__face gw__face--bottom" style="transform: rotateX(-90deg)" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gw__band3d">
+      <div class="gw__bandface gw__bandface--front" style="transform: rotateY(0deg)" />
+      <div class="gw__bandface gw__bandface--back" style="transform: rotateY(180deg)" />
+      <div class="gw__bandface gw__bandface--left" style="transform: rotateY(-90deg)" />
+      <div class="gw__bandface gw__bandface--right" style="transform: rotateY(90deg)" />
+    </div>
+
+    <div class="gw__lid">
+      <div class="gw__lidface gw__lidface--top" style="transform: rotateX(90deg)" />
+      <div class="gw__lidface gw__lidface--front" style="transform: rotateX(0deg)" />
+      <div class="gw__lidface gw__lidface--back" style="transform: rotateX(0deg) rotateY(180deg)" />
+      <div class="gw__lidface gw__lidface--left" style="transform: rotateY(-90deg)" />
+      <div class="gw__lidface gw__lidface--right" style="transform: rotateY(90deg)" />
+    </div>
+
+    <div class="gw__bow">
+      <div class="gw--left">
+        <div class="gw__loop gw__loop--a" />
+        <div class="gw__loop gw__loop--b" />
+      </div>
+      <div class="gw--right">
+        <div class="gw__loop gw__loop--a" />
+        <div class="gw__loop gw__loop--b" />
+      </div>
+    </div>
+
+    <div class="gw__knot" />
+
+    <div class="gw__glow2d" />
+    <div class="gw__innerlight" />
+
+    <div class="gw__reward">
+      <div class="gw__reward-title">{{ rewardTitle }}</div>
+      <div class="gw__reward-subtitle">{{ rewardSubtitle }}</div>
+      <div class="gw__reward-continue">{{ continueLabel }}</div>
+    </div>
+
+    <div class="gw__hint">
+      <div class="gw__hint-text">Esc</div>
+    </div>
+
+    <div class="gw__flash" />
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'GiftUnwrap',
+  props: {
+    rewardTitle: { type: String, default: 'GESCHAFFT!' },
+    rewardSubtitle: { type: String, default: 'Dein Abenteuer beginnt jetzt.' },
+    continueLabel: { type: String, default: 'Klicken zum Fortfahren' },
+  },
+  mounted() {
+    this.$el.addEventListener('click', () => {
+      setTimeout(() => this.$emit('complete'), 100)
+    })
+  },
+}
+</script>
+
 <style lang="scss" scoped>
 $box: 240px;
 $half: 120px;
