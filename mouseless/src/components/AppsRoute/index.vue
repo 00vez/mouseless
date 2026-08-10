@@ -7,15 +7,7 @@
       <list-section v-for="category in categories" :title="category.title" :key="category.title">
         <apps-list :apps="category.apps" />
       </list-section>
-      <button
-        class="apps-route__feedback"
-        type="button"
-        data-focusable
-        @click="openFeedbackBoard"
-      >
-        Your favorite app is not yet included?<br>
-        Vote for it to be part of the next update →
-      </button>
+
     </template>
   </page>
 </template>

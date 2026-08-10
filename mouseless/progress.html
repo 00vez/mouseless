@@ -23,24 +23,22 @@
   <li class="ok">Electron-App (macOS) läuft unverändert — nach Umbaue getestet</li>
   <li class="ok">PWA-Web-Build (VUE_APP_TARGET=web) kompiliert, Production-Build sauber</li>
   <li class="ok">Esc-als-Cmd-Toggle in den Einstellungen</li>
+  <li class="ok">GiftUnwrap 3D-Animation in Wrapper integriert (immer angezeigt, localStorage "seen" wird gesetzt nach Abschluss)</li>
   <li class="ok">Deploy nach Unraid + NPM Proxy Host</li>
 </ul>
 
 <h2>Web-App (PWA)</h2>
 <ul>
-  <li>Gleiche Vue-Komponenten wie Electron-App — kein Doppelcode, nur Webpack-Aliasse</li>
-  <li>Keymap fest auf US-QWERTY (<code>staticKeymap.js</code> ersetzt <code>native-keymap</code>)</li>
-  <li><code>electron</code>/<code>@electron/remote</code> → <code>electronStub.js</code> (Links via <code>window.open</code>)</li>
-  <li><code>Store.js</code> → localStorage-Wrapper, API identisch</li>
-  <li>PWA: Manifest, Service Worker, alle Icons generiert</li>
-</ul>
-
-<h2>Web-Build weggefallen</h2>
-<ul>
-  <li>Lizenz-Screen (isVerified immer true)</li>
-  <li>Active-App-Erkennung / <code>/shortcuts</code>-Route (active-win — im Browser unmöglich)</li>
-  <li>Optionen: Menüleiste, Docksymbol, Autostart</li>
-  <li>App-Whitelist Web: Safari, macOS, Finder, Spotify, Google Docs, Gmail (nur Web-Version)</li>
+  <li class="ok">Gleiche Vue-Komponenten wie Electron-App — kein Doppelcode, nur Webpack-Aliasse</li>
+  <li class="ok">Keymap fest auf US-QWERTY (<code>staticKeymap.js</code> ersetzt <code>native-keymap</code>)</li>
+  <li class="ok"><code>electron</code>/<code>@electron/remote</code> → <code>electronStub.js</code> (Links via <code>window.open</code>)</li>
+  <li class="ok"><code>Store.js</code> → localStorage-Wrapper, API identisch</li>
+  <li class="ok">GiftUnwrap: 3D-Geschenk-Animation (CSS-3D-Perspective, Box/Band/Lid/Bow/Knot/Glow) auf Web-Build</li>
+  <li class="warn">Service Worker deaktiviert (keine PWA Offline-Caching mehr — verhindert Cache-Probleme)</li>
+  <li class="warn">App-Whitelist Web: Safari, macOS, Finder, Spotify, Google Docs, Gmail (nur Web-Version)</li>
+  <li class="warn">Lizenz-Screen entfernt (isVerified immer true in Web-Build)</li>
+  <li class="todo">Active-App-Erkennung / <code>/shortcuts</code>-Route (active-win — im Browser unmöglich)</li>
+  <li class="todo">Optionen: Menüleiste, Docksymbol, Autostart (Electron-spezifisch)</li>
 </ul>
 
 <h2>Esc als Cmd (Web + Electron)</h2>
@@ -59,19 +57,21 @@
 
 <h2>Offen</h2>
 <ul>
-  <li class="todo">Auf Mac: "Zum Home-Bildschirm hinzufügen" testen (Installierbarkeit)</li>
+  <li class="todo">Auf Mac: "Zum Home-Bildschirm hinzufügen" testen (Installierbarkeit — Service Worker deaktiviert, muss ggf. manuell neu aktivieren)</li>
 </ul>
 
 <h2>Deployment (Unraid)</h2>
 <ul>
   <li class="ok">Git-Repo: <code>00vez/mouseless</code> — Umbenennung Mouseless → OhneMaus</li>
   <li class="ok">Web-Build: <code>yarn build:web</code> (NODE_OPTIONS=--openssl-legacy-provider)</li>
-  <li class="ok">Container: <code>maus</code> — nginx:alpine auf br0, feste IP 192.168.178.14:8081</li>
-  <li class="ok">Files: <code>/mnt/user/appdata/maus/html/</code></li>
-  <li class="ok">Nginx-Config: <code>/mnt/user/appdata/maus/nginx-conf/default.conf</code> (Port 8081)</li>
+  <li class="ok">Container: <code>maus</code> — nginx:alpine auf br0, feste IP 192.168.178.14 (Port 80 im Container)</li>
+  <li class="ok">Files: <code>/mnt/user/appdata/maus/html/</code> (chmod 755 für nginx-Zugriff)</li>
+  <li class="ok">Nginx-Config: <code>/mnt/user/appdata/maus/nginx-conf/default.conf</code> (mit mime.types, Port 8081)</li>
+  <li class="warn">MIME Types: nginx ohne <code>include mime.types</code> → JS/CSS als text/html ausgeliefert → GiftUnwrap CSS bricht</li>
+  <li class="warn">Fehler behoben: <code>include /etc/nginx/mime.types</code> + <code>chmod -R 755</code> in nginx-conf und html-Verzeichnis</li>
   <li class="ok">NPM Proxy Host: <code>maus.angerer.duckdns.org</code> → 192.168.178.14:8081</li>
   <li class="ok">SSL: Let's Encrypt + Force SSL</li>
-  <li class="ok">URL: <code>https://maus.angerer.duckdns.org/</code> — 200 OK</li>
+  <li class="ok">URL: <code>https://maus.angerer.duckdns.org/?gift=1</code> — 200 OK, JS lädt, GiftUnwrap an</li>
 </ul>
 
 <h2>Unraid Stack</h2>

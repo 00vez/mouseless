@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper" :class="{ 'is-loaded': isLoaded }">
-    <div class="wrapper__content" :class="{ 'is-hidden': showOptions || showLicense }">
+    <div class="wrapper__content" :class="{ 'is-hidden': showOptions }">
       <transition :name="transitionName">
         <router-view class="route" />
       </transition>
@@ -9,10 +9,6 @@
 
     <transition name="options">
       <options-overlay class="wrapper__overlay" v-if="showOptions" />
-    </transition>
-
-    <transition name="options">
-      <license-overlay class="wrapper__overlay" v-if="showLicense" />
     </transition>
 
     <gift-unwrap
@@ -33,10 +29,8 @@
 import { ipcRenderer } from 'electron'
 import SpatialNavigation from 'spatial-navigation-js'
 import Event from '@/services/Event'
-import User from '@/services/User'
 import GiftUnwrap from '@/components/GiftUnwrap'
 import OptionsOverlay from '@/components/OptionsOverlay'
-import LicenseOverlay from '@/components/LicenseOverlay'
 
 export default {
   name: 'Wrapper',
@@ -44,7 +38,6 @@ export default {
   components: {
     GiftUnwrap,
     OptionsOverlay,
-    LicenseOverlay,
   },
 
   data() {
@@ -52,17 +45,11 @@ export default {
       showGift: false,
       isLoaded: false,
       showOptions: false,
-      showLicense: !User.isVerified,
     }
   },
 
-  created() {
-    const forced = typeof window !== 'undefined'
-      && (new URLSearchParams(window.location.search).get('gift') === '1'
-          || (this.$route && this.$route.query && this.$route.query.gift === '1'))
-    let seen = false
-    try { seen = window.localStorage.getItem('giftUnwrapSeen') === '1' } catch (e) {}
-    if (forced || !seen) this.showGift = true
+   created() {
+    this.showGift = true
   },
 
   computed: {
@@ -76,6 +63,11 @@ export default {
   },
 
   methods: {
+    onGiftComplete() {
+      this.showGift = false
+      try { window.localStorage.setItem('giftUnwrapSeen', '1') } catch (e) {}
+    },
+
     onShowOptions() {
       if (this.$route.name === 'shortcuts') {
         ipcRenderer.send('showMainWindow')
@@ -87,14 +79,6 @@ export default {
 
     onHideOptions() {
       this.showOptions = false
-    },
-
-    onShowLicense() {
-      this.showLicense = true
-    },
-
-    onHideLicense() {
-      this.showLicense = false
     },
 
     onLog(event, log) {
@@ -115,8 +99,6 @@ export default {
 
     Event.on('showOptions', this.onShowOptions)
     Event.on('hideOptions', this.onHideOptions)
-    Event.on('showLicense', this.onShowLicense)
-    Event.on('hideLicense', this.onHideLicense)
 
     ipcRenderer.on('showOptions', this.onShowOptions)
     ipcRenderer.on('log', this.onLog)
@@ -125,42 +107,9 @@ export default {
   beforeDestroy() {
     Event.off('showOptions', this.onShowOptions)
     Event.off('hideOptions', this.onHideOptions)
-    Event.off('showLicense', this.onShowLicense)
-    Event.off('hideLicense', this.onHideLicense)
 
     ipcRenderer.removeListener('showOptions', this.onShowOptions)
     ipcRenderer.removeListener('log', this.onLog)
-  },
-
-  methods: {
-    onGiftComplete() {
-      this.showGift = false
-      try { window.localStorage.setItem('giftUnwrapSeen', '1') } catch (e) {}
-    },
-
-    onShowOptions() {
-      if (this.$route.name === 'shortcuts') {
-        ipcRenderer.send('showMainWindow')
-        return
-      }
-      this.showOptions = true
-    },
-
-    onHideOptions() {
-      this.showOptions = false
-    },
-
-    onShowLicense() {
-      this.showLicense = true
-    },
-
-    onHideLicense() {
-      this.showLicense = false
-    },
-
-    onLog(event, log) {
-      console.log(log)
-    },
   },
 }
 </script>
