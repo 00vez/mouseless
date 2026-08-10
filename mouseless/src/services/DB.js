@@ -34,9 +34,10 @@ export default new class {
       .keys()
       .map(filename => context(filename))
       .filter(data => {
-        const debug = typeof data.debug === 'undefined' ? 'false' : 'true'
+        const isDebugApp = typeof data.debug !== 'undefined'
+        const debugAppsOnly = process.env.VUE_APP_DEBUG === 'true'
 
-        return debug === process.env.VUE_APP_DEBUG
+        return isDebugApp === debugAppsOnly
       })
       .filter(data => !isWebTarget || webAppWhitelist.includes(data.id))
       .map(data => this.createModel(App, data))

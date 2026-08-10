@@ -49,7 +49,10 @@ export default {
   },
 
    created() {
-    this.showGift = true
+    let seen = false
+    try { seen = window.localStorage.getItem('giftUnwrapSeen') === '1' } catch (e) {}
+    const forced = /[?&]gift=1/.test(window.location.search)
+    this.showGift = forced || !seen
   },
 
   computed: {

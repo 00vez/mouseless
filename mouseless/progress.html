@@ -18,9 +18,69 @@
 </head>
 <body>
 
-<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr)</div>
+<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr) + (17:15 - 18:00 Uhr) + (18:30 - 19:00 Uhr) + (19:45 - 20:05 Uhr)</div>
 
 <h1>OhneMaus — Protokoll & Fortschritt</h1>
+
+<h2>Protokoll vom 10.08.2026 (4. Session)</h2>
+<h3>Prompt-Template + komplettes CSS-3D-Gift (Voidfire)</h3>
+<ul>
+  <li class="ok"><strong>Prompt-Template</strong> erstellt: <code>C:\Users\v\Documents\lib\export\prompt-gift-unwrap.md</code> — korrigierter, ausführbarer Prompt mit Platzhalter-Tabelle (App-Name, Farben, Texte, Storage-Key); referenziert die Skill-Datei und die Animationsregeln (nur transform/opacity, kein scale(0), Easing-Tokens, 7 Stages + Reveal)</li>
+  <li class="ok"><strong>GiftUnwrap.vue neu</strong> (aus PNG-Grafik ausdokumentiert) — echter CSS-3D-Kubus (6 Faces + separater Deckel, perspektivisch <code>rotateX(-16deg) rotateY(-28deg)</code>), vertikales Band + Schleife auf dem Deckel; WAAPI für alle Stage-Transforms</li>
+  <li class="ok">7 Öffnungs-Klicks + 1 Reveal-Klick: Stage 1 Schleife vibriert, 2 Knoten löst sich, 3/4 Schleifenhälften peitschen raus, 5 Band zerfällt in Orange/Gold-Partikel, 6 Deckel fliegt ab + Kamerapush + Licht, 7 Reward-Burst, 8 Lichtblende → <code>complete</code></li>
+  <li class="ok">Genau 3 Effektsysteme: Canvas-2D-Funken (rAF, <code>pointer-events:none</code>, vor <code>beforeDestroy</code> gecleant), konzentrische Radialstrahlen (<code>conic-gradient</code> + Rotation, pro Stage heller, Finale schneller), Schockwellen-Ringe per WAAPI</li>
+  <li class="ok">Wrapper-Fix: <code>created()</code> prüft jetzt <code>localStorage('giftUnwrapSeen')</code> + <code>?gift=1</code> statt immer <code>showGift=true</code>; Replay-Button oben rechts setzt nur Vue-State, löscht das Flag nicht</li>
+  <li class="ok">Props <code>rewardTitle</code>/<code>rewardSubtitle</code>/<code>continueLabel</code> (Defaults: GESCHAFFT! / Dein Abenteuer beginnt jetzt. / Klicken zum Fortfahren)</li>
+</ul>
+
+<h3>Build</h3>
+<ul>
+  <li class="ok">gebaut: <code>js/app.4fde6d08.js</code> (210KB) + <code>css/app.fffdc145.css</code> (23,8KB)</li>
+  <li class="ok">deployed via ssh unraid + NPM-Cache gepurged, live verifiziert: index.html → neue Assets, CSS mit <code>preserve-3d</code> + <code>conic-gradient</code>, JS mit Stage-Transforms + Canvas (<code>getContext</code>)</li>
+</ul>
+
+<h2>Protokoll vom 10.08.2026 (3. Session)</h2>
+<h3>Gift neu — SVG Klick-Auspacken</h3>
+<ul>
+  <li class="ok"><strong>3D-CSS-Box ersetzt</strong> — neues Gift aus <code>C:\Users\v\Downloads\gift-unwrap.html</code> als <code>GiftUnwrap.vue</code> portiert: SVG-Geschenk (Box, Deckel, Band, Schleife, Knoten, Glow), 4 Klick-Schritte mit Shake + Punkte-Fortschritt, Konfetti, danach Reward + <code>complete</code></li>
+  <li class="ok"><strong>Format der Quelldatei</strong> — keine standalone HTML möglich; nötig: Vue-SFC (<code>&lt;template&gt;</code> mit Inline-SVG, <code>&lt;script&gt;</code> mit <code>export default</code> + <code>$emit('complete')</code>, <code>&lt;style lang="scss"&gt;</code> <em>ohne</em> <code>scoped</code>, weil Dots/Konfetti zur Laufzeit per JS ins DOM kommen; kein <code>&lt;html&gt;</code>/<code>&lt;body&gt;</code>/<code>&lt;script&gt;</code>-Block)</li>
+  <li class="ok">Wrapper unverändert: <code>showGift = true</code> bei jedem Mount → Gift spielt bei jedem URL-Aufruf (<code>/?gift=1</code>, nackte Domain, <code>/#/</code>)</li>
+</ul>
+
+<h3>Build + Deploy</h3>
+<ul>
+  <li class="ok">lokal gebaut: <code>js/app.5bad3135.js</code> (205KB) + <code>css/app.947f269f.css</code> (19,7KB, <code>transform-box: fill-box</code>)</li>
+  <li class="ok">Deployed via "ssh unraid" (Ablauf siehe Deploy-Gotchas unten), NPM-Cache gepurged</li>
+  <li class="ok">Verifiziert live: index.html → neue Assets, CSS <code>text/css</code> mit <code>gw__gift</code>/<code>gw-shake</code>, JS <code>application/javascript</code> mit "Klicken zum Auspacken" + <code>showGift=true</code></li>
+</ul>
+
+<h2>Protokoll vom 10.08.2026 (2. Session)</h2>
+<h3>Korrekturen</h3>
+<ul>
+  <li class="ok"><strong>App-Cards leer auf Web-Build</strong> — <code>DB.js</code>-Debug-Filter verwarf <em>alle</em> Apps, sobald <code>VUE_APP_DEBUG</code> nicht gesetzt war (<code>'false' === undefined</code> ist immer <code>false</code>) → Filter auf Boolean-Vergleich umgestellt (<code>isDebugApp === (VUE_APP_DEBUG === 'true')</code>); ungesetzt = Nicht-Debug-Apps anzeigen → Cards erscheinen wieder</li>
+  <li class="ok"><strong>GiftUnwrap-Reward unsichtbar</strong> — <code>.gw__reward &gt; *</code> stand auf <code>opacity: 0</code>, keine Animation blendete den Text ein → Entrance-Sequenz beim Mount ergänzt (<code>is-playing</code>-Flag via <code>requestAnimationFrame</code>)</li>
+  <li class="ok"><strong>Animation fehlte sichtbarer Ablauf</strong> — Scene/Bow kommen jetzt animiert herein, Rings shockwaven, Reward blendet gestaffelt ein, Flash am Ende</li>
+  <li class="ok"><strong>Ring-Zentrierung</strong> — <code>.gw__ring</code> doppelt zentriert (Margin <em>und</em> <code>translate(-50%,-50%)</code>) → Margin-Bezug beibehalten, Transform nur noch <code>scale()</code></li>
+</ul>
+
+<h3>Animation bei jedem URL-Aufruf</h3>
+<ul>
+  <li class="ok"><code>Wrapper.created()</code> setzt <code>showGift = true</code> — unabhängig von Query/Hash. Sichergestellt für <code>/?gift=1</code>, nackte Domain und <code>/#/</code></li>
+  <li class="ok">Kein Einlesen von <code>giftUnwrapSeen</code> mehr → Gift spielt bei jedem Seitenaufruf neu, lokalStorage wird nur noch gesetzt (ohne Wirkung)</li>
+</ul>
+
+<h3>Neuer Build (deployed via "ssh unraid")</h3>
+<ul>
+  <li class="ok">lokal gebaut: <code>js/app.7747fa5e.js</code> (205KB) + <code>css/app.dd215cbb.css</code> (33KB) — live auf <code>https://maus.angerer.duckdns.org</code></li>
+  <li class="ok">Verifiziert: index.html referenziert neue Assets, CSS als <code>text/css</code> mit <code>gw--playing</code>, JS als <code>application/javascript</code> mit fixiertem Cards-Filter + <code>showGift=true</code>, alle 6 Web-Apps im Bundle</li>
+</ul>
+
+<h3>Deploy-Gotchas (Unraid)</h3>
+<ul>
+  <li class="warn"><strong>Kein <code>mv</code>/Rename von Verzeichnissen unter <code>/mnt/user/appdata/</code> bei laufenden Containern</strong> — Bind-Mount zeigt auf die Inode; nach Swap zeigt der Container auf den alten (umbenannten) Ordner. Stattdessen: Dateien <em>in</em> das gemountete Verzeichnis kopieren (<code>cp -a</code>), nicht den Ordner ersetzen</li>
+  <li class="warn"><strong>NPM "Cache Assets" cached pro URI</strong> — nach Deploy evtl. stale Antworten (Kaputt-Swap-Fallback). Purge: <code>docker exec npm sh -c 'rm -rf /var/lib/nginx/cache/public/* /var/lib/nginx/cache/private/*'</code></li>
+  <li class="ok">Deploy-Ablauf: <code>scp -r dist unraid:/mnt/user/appdata/maus/stage_new</code> → <code>rm -rf html/*</code> → <code>cp -a stage_new/. html/</code> → <code>chmod -R 755 html</code> → Cache purge</li>
+</ul>
 
 <h2>Protokoll vom 10.08.2026</h2>
 <h3>Gesammelte Probleme und Lösungen</h3>
@@ -41,11 +101,12 @@
 <h2>Aktueller Status</h2>
 <ul>
   <li class="ok">Electron-App (macOS) kompiliert erfolgreich → app.a6a33e77.js (205KB) + chunk-vendors.a8b55907.js (629KB)</li>
-  <li class="ok">PWA-Web-Build (VUE_APP_TARGET=web) kompiliert → app.f33d9daf.js (210KB) + app.a99bad71.css (32KB)</li>
+  <li class="ok">PWA-Web-Build (VUE_APP_TARGET=web) deployed → app.5bad3135.js (205KB) + app.947f269f.css (19,7KB) live — SVG-Klick-Gift + Cards-Fix</li>
   <li class="ok">Esc-als-Cmd-Toggle in den Einstellungen</li>
-  <li class="ok">GiftUnwrap 3D-Animation vollständig implementiert (Box, Band, Lid, Bow, Knot, Glow, Rays, Canvas-Rings)</li>
-  <li class="ok">GiftUnwrap immer angezeigt (Wrapper.vue created() setzt showGift = true, localStorage "seen" nach Abschluss)</li>
-  <li class="ok">Deploy nach Unraid + NPM Proxy Host — app.f33d9faf.js + app.a99bad71.css live</li>
+  <li class="ok">GiftUnwrap: SVG-Geschenk, 4 Klick-Schritte (Shake, Bow/Knot/Ribbon/Lid fliegen weg), Dots, Konfetti, Reward "GESCHAFFT!"</li>
+  <li class="ok">GiftUnwrap immer angezeigt (Wrapper.vue created() setzt showGift = true — bei jedem URL-Aufruf, egal ob <code>?gift=1</code>, nackte Domain oder <code>/#/</code>)</li>
+  <li class="ok">App-Cards-Fix: <code>DB.js</code>-Debug-Filter robust gegen ungesetztes <code>VUE_APP_DEBUG</code> → 6 Web-Apps (Safari, macOS, Finder, Spotify, Google Docs, Gmail) werden geladen</li>
+  <li class="ok">Deploy nach Unraid abgeschlossen — alte Builds entfernt, NPM-Cache gepurged</li>
 </ul>
 
 <h2>Status (vor Protokoll)</h2>
