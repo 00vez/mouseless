@@ -80,12 +80,7 @@ module.exports = {
 
     config.resolve.extensions.prepend('.node')
 
-    config.module
-      .rule('vue')
-      .use('cache-loader')
-      .loader('cache-loader')
-      .options({ cacheDirectory: false })
-      .end()
+    // cache is handled by vue-loader internally
   },
 
   pluginOptions: isWebTarget
