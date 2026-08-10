@@ -23,20 +23,22 @@
             <div class="overview-route__set-title">
               {{ set.title }}
             </div>
-            <div
-              class="overview-route__row"
-              v-for="shortcut in app.shortcutsBySet(set.id)"
-              :key="shortcut.id"
-            >
-              <div class="overview-route__definition">
-                {{ shortcut.title }}
-              </div>
-              <div class="overview-route__keys">
-                <small-key
-                  v-for="key in shortcut.resolvedKeys"
-                  :key="key"
-                  :name="key"
-                />
+            <div class="overview-route__table">
+              <div
+                class="overview-route__row"
+                v-for="shortcut in app.shortcutsBySet(set.id)"
+                :key="shortcut.id"
+              >
+                <div class="overview-route__keys">
+                  <small-key
+                    v-for="key in shortcut.resolvedKeys"
+                    :key="key"
+                    :name="key"
+                  />
+                </div>
+                <div class="overview-route__definition">
+                  {{ shortcut.title }}
+                </div>
               </div>
             </div>
           </div>

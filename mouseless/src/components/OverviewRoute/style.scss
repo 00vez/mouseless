@@ -11,7 +11,7 @@
   &__app-header {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   &__logo {
@@ -26,40 +26,52 @@
   }
 
   &__set {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__set-title {
     font-size: 16px;
     font-weight: 600;
     color: var(--color-text-muted);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+  }
+
+  &__table {
+    border-radius: 12px;
+    overflow: hidden;
   }
 
   &__row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 16px;
-    padding: 10px 12px;
-    border-radius: 8px;
-    margin-bottom: 2px;
+    padding: 10px 16px;
+    transition: background-color 0.2s $ease;
 
-    &:hover {
+    &:nth-child(even) {
       background-color: var(--color-card);
     }
+
+    &:hover {
+      background-color: var(--color-card-hover);
+    }
+  }
+
+  &__keys {
+    flex: 0 0 160px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   &__definition {
     flex: 1 1 auto;
     font-size: 16px;
     font-weight: 500;
-  }
-
-  &__keys {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
   }
 
 }
