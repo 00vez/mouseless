@@ -8,7 +8,7 @@
     <template v-slot>
       <div class="sets-route">
         <div class="sets-route__header">
-          <img class="sets-route__logo" :src="logo">
+          <img class="sets-route__logo" :data-theme-invert="app.id === 'macos'" :src="logo">
           <div class="sets-route__title">
             {{ app.title }}
           </div>
