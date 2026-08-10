@@ -18,9 +18,26 @@
 </head>
 <body>
 
-<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr) + (17:15 - 18:00 Uhr) + (18:30 - 19:00 Uhr) + (19:45 - 20:05 Uhr)</div>
+<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr) + (17:15 - 18:00 Uhr) + (18:30 - 19:00 Uhr) + (19:45 - 20:05 Uhr) + (20:15 - 21:00 Uhr)</div>
 
 <h1>OhneMaus — Protokoll & Fortschritt</h1>
+
+<h2>Protokoll vom 10.08.2026 (5. Session)</h2>
+<h3>Gift umgestellt auf Video</h3>
+<ul>
+  <li class="ok"><strong>CSS-3D-Gift verworfen</strong> — stattdessen Video-Overlay: <code>GiftUnwrap.vue</code> spielt <code>public/gift.mp4</code> fullscreen, erster Klick startet (Hint <code>Klicken zum Öffnen</code>), nach <code>@ended</code> Lichtblende → <code>complete</code> → Website + <code>giftUnwrapSeen=1</code></li>
+  <li class="ok"><strong>Video geschnitten</strong> — Quelle <code>C:\Users\v\Downloads\upscaled-video.mp4</code> (h264 720p 30fps, 5s), via ffmpeg auf die ersten 2,5s gekürzt, re-encoded (H.264 main, CRF 20, faststart) → <code>public/gift.mp4</code> (424KB)</li>
+  <li class="ok"><strong>Bug aus Session 4 behoben</strong> — <code>stage6()</code> crashte an <code>this.$refs.light</code> (kein <code>ref="light"</code> im Template) → <code>busy</code> blieb <code>true</code>, alle Klicks ab Stage 6 inkl. Reveal wurden verworfen, Cards erschienen nie; Fix: <code>ref</code> ergänzt + Guard in <code>anim()</code></li>
+  <li class="ok"><strong>Nginx MIME-Fix</strong> — maus-Container hat statische <code>types</code>-Liste ohne mp4 → lieferte <code>application/octet-stream</code>; <code>video/mp4 mp4;</code> in <code>/mnt/user/appdata/maus/nginx-conf/default.conf</code> ergänzt + reload</li>
+  <li class="ok">Reward-Texte final: nur <code>Jetzt öffnen.</code> + Button <code>Fortfahren</code> (kein Subtitle); Wrapper übergibt keine Props mehr (Defaults)</li>
+  <li class="ok">Live verifiziert (Headless-Chrome): Klick → <code>playing</code> → nach Videoende Gift entfernt, 6 Cards sichtbar, <code>seen=1</code>, keine Console-Errors</li>
+</ul>
+
+<h3>Build</h3>
+<ul>
+  <li class="ok">gebaut: <code>js/app.df5ca80b.js</code> + <code>css/app.7a04ea34.css</code> + <code>gift.mp4</code> im dist</li>
+  <li class="ok">deployed via ssh unraid, NPM-Cache gepurged</li>
+</ul>
 
 <h2>Protokoll vom 10.08.2026 (4. Session)</h2>
 <h3>Prompt-Template + komplettes CSS-3D-Gift (Voidfire)</h3>

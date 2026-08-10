@@ -13,9 +13,6 @@
 
     <gift-unwrap
       v-if="showGift"
-      :reward-title="'GESCHAFFT!'"
-      :reward-subtitle="'Dein Abenteuer beginnt jetzt.'"
-      :continue-label="'Klicken zum Fortfahren'"
       @complete="onGiftComplete"
     />
 
