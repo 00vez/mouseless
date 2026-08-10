@@ -2,23 +2,53 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<title>OhneMaus — Fortschritt</title>
+<title>OhneMaus — Protokoll & Fortschritt</title>
 <style>
   body { font-family: -apple-system, Segoe UI, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #222; line-height: 1.5; }
   h1 { font-size: 1.4rem; }
   h2 { font-size: 1.05rem; margin-top: 1.8rem; border-bottom: 1px solid #ddd; padding-bottom: .2rem; }
+  h3 { font-size: 0.95rem; margin-top: 1rem; color: #444; }
   li { margin: .2rem 0; }
   code { background: #f4f4f4; padding: .1rem .3rem; border-radius: 3px; font-size: .9em; }
   .ok::before { content: "✓ "; color: #1a7f37; }
   .todo::before { content: "☐ "; color: #9a6700; }
   .warn::before { content: "⚠ "; color: #b35900; }
+  .date { font-size: 0.9em; color: #666; margin-bottom: 1rem; }
 </style>
 </head>
 <body>
 
-<h1>OhneMaus — Fortschritt</h1>
+<div class="date">Protokoll: 10.08.2026 (14:30 - 17:00 Uhr)</div>
 
-<h2>Status</h2>
+<h1>OhneMaus — Protokoll & Fortschritt</h1>
+
+<h2>Protokoll vom 10.08.2026</h2>
+<h3>Gesammelte Probleme und Lösungen</h3>
+<ul>
+  <li class="ok"><strong>GiftUnwrap nicht sichtbar</strong> — Component hatte nur &lt;style&gt;-Section, kein &lt;template&gt; oder &lt;script&gt; → Template hinzugefügt mit 3D-Face-Transforms (rotateX/rotateY)</li>
+  <li class="ok"><strong>Band/Bow Struktur falsch</strong> — Loops waren flach statt in .gw--left/.gw--right Containern → Nested-Struktur korrigiert</li>
+  <li class="ok"><strong>Electron Build Cache-Loader Fehler</strong> — vue.config.js hatte .options({ cacheDirectory: false }) → cache-loader v4.1.0 benötigt String-Pfad → Configuration entfernt (vue-loader übernimmt)</li>
+  <li class="ok"><strong>Node.js v26 OpenSSL Fehler</strong> — electron:build scheiterte mit "digital envelope routines::unsupported" → NODE_OPTIONS=--openssl-legacy-provider zu allen electron-Scripts hinzugefügt (build, electron:build, electron:serve, start, electron:publish)</li>
+</ul>
+
+<h3>Gesammelte Commits</h3>
+<ul>
+  <li class="ok">4ea20ba — fix: add template to GiftUnwrap.vue, remove LicenseOverlay, always show gift</li>
+  <li class="ok">e4e3e8b — fix: add NODE_OPTIONS for electron build, remove cache-loader config</li>
+  <li class="ok">1180dbd — feat: add template and inline transforms to GiftUnwrap for 3D animation</li>
+</ul>
+
+<h2>Aktueller Status</h2>
+<ul>
+  <li class="ok">Electron-App (macOS) kompiliert erfolgreich → app.a6a33e77.js (205KB) + chunk-vendors.a8b55907.js (629KB)</li>
+  <li class="ok">PWA-Web-Build (VUE_APP_TARGET=web) kompiliert → app.f33d9daf.js (210KB) + app.a99bad71.css (32KB)</li>
+  <li class="ok">Esc-als-Cmd-Toggle in den Einstellungen</li>
+  <li class="ok">GiftUnwrap 3D-Animation vollständig implementiert (Box, Band, Lid, Bow, Knot, Glow, Rays, Canvas-Rings)</li>
+  <li class="ok">GiftUnwrap immer angezeigt (Wrapper.vue created() setzt showGift = true, localStorage "seen" nach Abschluss)</li>
+  <li class="ok">Deploy nach Unraid + NPM Proxy Host — app.f33d9faf.js + app.a99bad71.css live</li>
+</ul>
+
+<h2>Status (vor Protokoll)</h2>
 <ul>
   <li class="ok">Electron-App (macOS) läuft unverändert — nach Umbaue getestet</li>
   <li class="ok">PWA-Web-Build (VUE_APP_TARGET=web) kompiliert, Production-Build sauber</li>
