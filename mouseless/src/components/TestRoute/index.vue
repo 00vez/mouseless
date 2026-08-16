@@ -4,8 +4,7 @@
       <btn icon="arrow-left" @click.native="goBack">
         Sets
       </btn>
-    </template>
-    <template v-slot>
+    </template>    <template v-slot>
       <div class="test-route">
         <transition name="shortcut" mode="out-in">
           <div
