@@ -1,6 +1,22 @@
 const path = require('path')
+const { execSync } = require('child_process')
 
 const isWebTarget = process.env.VUE_APP_TARGET === 'web'
+
+function getBuildVersion() {
+  const pkg = require('./package.json')
+  let commit = 'unknown'
+
+  try {
+    commit = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim()
+  } catch (e) {
+    // no git repo (e.g. CI without history) — keep 'unknown'
+  }
+
+  const dateHash = Math.floor(Date.now() / 60000).toString(36)
+
+  return `v${pkg.version} (${commit}, ${dateHash})`
+}
 
 module.exports = {
   lintOnSave: process.env.NODE_ENV === 'production',
@@ -33,6 +49,12 @@ module.exports = {
     : undefined,
 
   chainWebpack: config => {
+    config.plugin('define').tap(args => {
+      const target = args[0]
+      target['process.env.VUE_APP_BUILD_VERSION'] = JSON.stringify(getBuildVersion())
+      return args
+    })
+
     if (isWebTarget) {
       // no browser API exists to read the OS keyboard layout
       config.resolve.alias.set('native-keymap', path.resolve(__dirname, 'src/services/staticKeymap.js'))
@@ -128,7 +150,7 @@ module.exports = {
             mergeASARs: false,
             target: {
               target: 'default',
-              arch: 'universal'
+              arch: 'universal',
             },
             hardenedRuntime: true,
             gatekeeperAssess: false,

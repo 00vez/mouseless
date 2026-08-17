@@ -193,6 +193,15 @@
 
       <div class="options-overlay__section">
         <div>
+          Version
+        </div>
+        <div>
+          {{ buildVersion }}
+        </div>
+      </div>
+
+      <div class="options-overlay__section">
+        <div>
           Gift
         </div>
         <div>
@@ -294,6 +303,10 @@ export default {
 
     isLight() {
       return this.theme === 'light'
+    },
+
+    buildVersion() {
+      return process.env.VUE_APP_BUILD_VERSION || 'unbekannt'
     },
   },
 
