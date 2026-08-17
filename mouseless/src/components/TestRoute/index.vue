@@ -134,6 +134,7 @@ export default {
       isTest: false,
       history: [],
       retryMode: false,
+      pendingIds: null,
     }
   },
 
@@ -232,6 +233,11 @@ export default {
     },
 
     skip() {
+      this.pendingIds = {
+        trainedIds: [...this.trainedIds],
+        learnedIds: [...this.learnedIds],
+        skippedIds: [...this.skippedIds],
+      }
       this.addToSkippedIds(this.currentShortcut.id)
       this.next()
     },
@@ -253,6 +259,9 @@ export default {
       this.success = false
       this.pressedResolvedKeys = []
       this.failedResolvedKeys = []
+      this.trainedIds = previous.trainedIds
+      this.learnedIds = previous.learnedIds
+      this.skippedIds = previous.skippedIds
       this.testId = uuidv4()
       this.isTest = this.trainedIds.includes(previous.shortcut.id) || this.learnedIds.includes(previous.shortcut.id)
     },
@@ -261,13 +270,13 @@ export default {
       if (this.currentShortcut && !this.retryMode) {
         this.history.push({
           shortcut: this.currentShortcut,
-          testFailed: this.testFailed,
-          success: this.success,
-          pressedResolvedKeys: this.pressedResolvedKeys,
-          failedResolvedKeys: this.failedResolvedKeys,
+          trainedIds: this.pendingIds ? [...this.pendingIds.trainedIds] : [...this.trainedIds],
+          learnedIds: this.pendingIds ? [...this.pendingIds.learnedIds] : [...this.learnedIds],
+          skippedIds: this.pendingIds ? [...this.pendingIds.skippedIds] : [...this.skippedIds],
         })
       }
 
+      this.pendingIds = null
       this.retryMode = false
       this.testId = uuidv4()
       this.testFailed = false
@@ -391,6 +400,12 @@ export default {
       if (this.keyboard.is(this.currentShortcut.resolvedKeys)) {
         const { id } = this.currentShortcut
         this.success = true
+
+        this.pendingIds = {
+          trainedIds: [...this.trainedIds],
+          learnedIds: [...this.learnedIds],
+          skippedIds: [...this.skippedIds],
+        }
 
         if (this.isTest && !this.testFailed) {
           this.addToLearnedIds(id)
