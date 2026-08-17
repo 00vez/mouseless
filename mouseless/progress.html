@@ -22,6 +22,41 @@
 
 <h1>OhneMaus — Protokoll & Fortschritt</h1>
 
+<h2>Protokoll vom 17.08.2026 (15. Session)</h2>
+<h3>Back-Button-Fix bestätigt</h3>
+<ul>
+  <li class="ok"><strong>Interaktiver UI-Test bestanden (Mac):</strong> Karte lösen → Zurück im Übergangsfenster → Karte erscheint wieder ungesehen und ist erneut übbar. Der Fix aus Session 13 (<code>retryMode</code> entfernt, bedingungsloser History-Push in <code>next()</code>) funktioniert korrekt.</li>
+</ul>
+
+<h2>Protokoll vom 17.08.2026 (14. Session)</h2>
+<h3>Build-Version in den Einstellungen</h3>
+<ul>
+  <li class="ok"><strong>Version in Einstellungen:</strong> neue Sektion <code>Version</code> im OptionsOverlay zeigt <code>v{package.json-Version} ({git-short-hash}, {Zeit-Hash})</code>, z. B. <code>v1.4.0 (e54ea00, hqcs3)</code>.</li>
+  <li class="ok"><strong>Umsetzung:</strong> <code>vue.config.js</code> injiziert <code>process.env.VUE_APP_BUILD_VERSION</code> per Define-Plugin (<code>getBuildVersion()</code>: <code>git rev-parse --short HEAD</code> + Zeit-Hash; Commit fehlt → <code>unknown</code>). Wirkt für Web- und Electron-Build; in Dev-Mode ohne Define → Fallback „unbekannt".</li>
+  <li class="ok"><strong>Zeit-Hash-Formel (rückgängig machbar):</strong> <code>hash = Math.floor(Date.now() / 60000).toString(36)</code> — Minuten seit Unix-Epoch in Base36 (z. B. <code>hqcs3</code>). Rückrechnung: <code>new Date(parseInt(hash, 36) * 60000)</code>. Auflösung: 1 Minute (keine Zeitzonen-Abhängigkeit, UTC).</li>
+  <li class="ok"><strong>Nebenbefund:</strong> Pre-Existing-Lint-Fehler in <code>vue.config.js</code> (fehlende trailing comma bei <code>arch: 'universal'</code>) beim Vorbeigehen behoben — keine Verhaltensänderung.</li>
+  <li class="ok"><strong>Build + Deploy:</strong> <code>app.a8f24468.js</code> live (in-place via <code>scp</code>, chmod 755, Cache purge). Verifiziert: root/JS HTTP 200, Hash-Versionsstring im Live-Bundle vorhanden.</li>
+</ul>
+<h3>Nächste Schritte</h3>
+<ul>
+  <li class="todo">Interaktiver UI-Test auf dem Mac: Version in Einstellungen sichtbar; Back-Button-Fix (Session 13) erneut prüfen.</li>
+</ul>
+
+<h2>Protokoll vom 17.08.2026 (13. Session)</h2>
+<h3>Back-Button-Bug: Restfehler gefunden und behoben</h3>
+<ul>
+  <li class="warn"><strong>Befund (Session 12 war unvollständig):</strong> Trotz <code>eb6da38</code>-Fix (IDs-Mutation hinter History-Push) blieb der Back-Bug bestehen. Diagnose als Timing-Problem war korrekt, aber unvollständig.</li>
+  <li class="ok"><strong>Echter Rest-Root-Cause:</strong> <code>retryMode</code> (aus <code>266a288</code>, Loop-Schutz) unterdrückte den History-Push in <code>next()</code> (<code>if (this.currentShortcut &amp;&amp; !this.retryMode)</code>). Nach <code>back()</code> + erneutem Lösen der Karte fehlte deren History-Eintrag → nächster <code>back()</code> fand <code>history.pop()</code> leer/falsch → blockiert oder falsche Karte. Loop-Schutz war mit den späteren Fixes (67aa5b9, 48b0a87, eb6da38) redundant: back() poppt den Eintrag und filtert die Karte aus allen IDs, ein erneuter Push derselben Karte ist kein Loop, sondern der gewünschte Zyklus.</li>
+  <li class="ok"><strong>Fix:</strong> <code>retryMode</code> komplett entfernt (data, back(), next()). <code>next()</code> pusht jetzt bedingungslos, wenn <code>currentShortcut</code> gesetzt ist. Ergebnis: erneut gelöste Karte landet wieder in der History, Back bleibt wiederholbar.</li>
+  <li class="ok"><strong>Verifikation (Node-Simulation, exakte TestRoute-Logik nachgebildet):</strong> 4 Szenarien, 15 Checks, 0 Fehler — Back im 1-s-Fenster, Back nach Commit, 2x gelöste (learned) Karte komplett zurückgesetzt, Back nach Skip, mehrfaches Back bis History leer (No-op statt Crash).</li>
+  <li class="ok"><strong>Build:</strong> <code>app.512061a8.js</code> (retryMode nicht mehr im Bundle, Push unbedingt). Lint: <code>npx eslint src/components/TestRoute/index.vue</code> ohne Fehler. Interaktiver UI-Test auf dem Mac steht aus.</li>
+  <li class="ok"><strong>Deploy:</strong> <code>app.512061a8.js</code> live (in-place via <code>scp dist/. → html/</code>, chmod 755, NPM-Cache gepurged). Verifiziert: root, JS, CSS alle HTTP 200, <code>index.html</code> referenziert <code>app.512061a8.js</code>. Ohne <code>rm -rf</code> deployed (alte Assets bleiben liegen).</li>
+</ul>
+<h3>Nächste Schritte</h3>
+<ul>
+  <li class="todo">Interaktiver UI-Test auf dem Mac: Karte lösen → im 1-s-Fenster Zurück → Karte erneut übbar; 2x gelöste Karte zurück erreichbar; mehrfach Zurück bis zur ersten Karte.</li>
+</ul>
+
 <h2>Protokoll vom 17.08.2026 (12. Session)</h2>
 <h3>Back-Button-Bug (Root Cause + Fix)</h3>
 <ul>
