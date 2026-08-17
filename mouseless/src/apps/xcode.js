@@ -222,7 +222,7 @@ module.exports = {
         },
         {
           title: 'Check Document Now',
-          keys: ['Meta', 'Shift', ';'],
+          keys: ['Alt', 'Meta', ';'],
         },
       ],
     },
@@ -516,7 +516,7 @@ module.exports = {
         },
         {
           title: 'Find and Replace in Workspace…',
-          keys: ['Alt', 'Shift', 'Meta'],
+          keys: ['Alt', 'Shift', 'Meta', 'f'],
         },
         {
           title: 'Find Next in Workspace',

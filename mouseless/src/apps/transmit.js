@@ -210,11 +210,11 @@ module.exports = {
         },
         {
           title: 'Select Next Tab',
-          keys: ['Control', '⇥'],
+          keys: ['Control', 'Tab'],
         },
         {
           title: 'Select Previous Tab',
-          keys: ['Control', 'Shift', '⇤'],
+          keys: ['Control', 'Shift', 'Tab'],
         },
         {
           title: 'Transcript',

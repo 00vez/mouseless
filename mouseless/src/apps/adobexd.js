@@ -75,7 +75,7 @@ module.exports = {
         },
         {
           title: 'Open…',
-          keys: ['Meta', 'Shift', 'o'],
+          keys: ['Meta', 'o'],
         },
         {
           title: 'Close',
