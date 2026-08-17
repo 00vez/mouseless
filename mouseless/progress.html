@@ -22,6 +22,21 @@
 
 <h1>OhneMaus — Protokoll & Fortschritt</h1>
 
+<h2>Protokoll vom 17.08.2026 (12. Session)</h2>
+<h3>Back-Button-Bug (Root Cause + Fix)</h3>
+<ul>
+  <li class="warn"><strong>Symptom:</strong> Zurück nach gelöster Karte → Karte galt als „gesehen/abgeschlossen" und war nicht mehr erneut übbar; bei 2x gelösten Karten war Zurück ganz blockiert.</li>
+  <li class="ok"><strong>Drei blinde Fixversuche verworfen</strong> (pendingIds-Snapshot, aktives IDs-Filtern, retryMode) — alle teils erfolgreich (Loop weg), aber Kernfehler blieb.</li>
+  <li class="ok"><strong>Root Cause (Timing):</strong> <code>addToLearnedIds</code>/<code>addToTrainedIds</code> liefen sofort im <code>pressed</code>-Handler (Zeile ~400), der History-Push aber erst 1000 ms später in <code>next()</code>. Drückte man in diesem Fenster Zurück, brach <code>clearTimeout</code> den Push ab, während die Karte bereits in den IDs stand → „gemeistert", ohne je in der History zu sein.</li>
+  <li class="ok"><strong>Fix:</strong> IDs-Mutation in <code>next()</code> <em>hinter</em> den History-Push verschoben (<code>pendingSuccess = { id, isTest }</code>). <code>back()</code> behandelt eine uncommittete, gerade gelöste Karte als Back-Ziel. Beim Back wird die Karte weiterhin aus <code>trainedIds</code>/<code>learnedIds</code>/<code>skippedIds</code> gefiltert → wieder ungesehen.</li>
+  <li class="ok">Commit <code>eb6da38</code>, Build <code>app.0a766851.js</code>, deployed, HTTP 200.</li>
+</ul>
+<h3>Verifikation</h3>
+<ul>
+  <li class="warn"><strong>Interaktiver UI-Test steht aus:</strong> Karte lösen → im 1-s-Fenster Zurück → Karte erscheint wieder ungesehen; 2x gelöste Karte zurück erreichbar.</li>
+  <li class="warn"><strong>superpowers-Plugin</strong> in <code>~/.config/opencode/opencode.jsonc</code> ergänzt (systematic-debugging-Skills); erst nach OpenCode-Neustart aktiv.</li>
+</ul>
+
 <h2>Protokoll vom 17.08.2026 (11. Session)</h2>
 <h3>Fixes nach UI-Feedback</h3>
 <ul>
