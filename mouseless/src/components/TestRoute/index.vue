@@ -134,7 +134,6 @@ export default {
       isTest: false,
       history: [],
       retryMode: false,
-      pendingIds: null,
     }
   },
 
@@ -233,11 +232,6 @@ export default {
     },
 
     skip() {
-      this.pendingIds = {
-        trainedIds: [...this.trainedIds],
-        learnedIds: [...this.learnedIds],
-        skippedIds: [...this.skippedIds],
-      }
       this.addToSkippedIds(this.currentShortcut.id)
       this.next()
     },
@@ -260,8 +254,11 @@ export default {
       this.pressedResolvedKeys = []
       this.failedResolvedKeys = []
       this.trainedIds = previous.trainedIds
+        .filter(id => id !== previous.shortcut.id)
       this.learnedIds = previous.learnedIds
+        .filter(id => id !== previous.shortcut.id)
       this.skippedIds = previous.skippedIds
+        .filter(id => id !== previous.shortcut.id)
       this.testId = uuidv4()
       this.isTest = this.trainedIds.includes(previous.shortcut.id) || this.learnedIds.includes(previous.shortcut.id)
     },
@@ -270,13 +267,12 @@ export default {
       if (this.currentShortcut && !this.retryMode) {
         this.history.push({
           shortcut: this.currentShortcut,
-          trainedIds: this.pendingIds ? [...this.pendingIds.trainedIds] : [...this.trainedIds],
-          learnedIds: this.pendingIds ? [...this.pendingIds.learnedIds] : [...this.learnedIds],
-          skippedIds: this.pendingIds ? [...this.pendingIds.skippedIds] : [...this.skippedIds],
+          trainedIds: [...this.trainedIds],
+          learnedIds: [...this.learnedIds],
+          skippedIds: [...this.skippedIds],
         })
       }
 
-      this.pendingIds = null
       this.retryMode = false
       this.testId = uuidv4()
       this.testFailed = false
@@ -400,12 +396,6 @@ export default {
       if (this.keyboard.is(this.currentShortcut.resolvedKeys)) {
         const { id } = this.currentShortcut
         this.success = true
-
-        this.pendingIds = {
-          trainedIds: [...this.trainedIds],
-          learnedIds: [...this.learnedIds],
-          skippedIds: [...this.skippedIds],
-        }
 
         if (this.isTest && !this.testFailed) {
           this.addToLearnedIds(id)
