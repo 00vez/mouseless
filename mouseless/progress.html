@@ -31,7 +31,7 @@
 </ul>
 <h3>Architekturentscheidung (Fragen beantwortet)</h3>
 <ul>
-  <li class="ok"><strong>Stufe A — deterministische <code>pressed</code>-Erkennung umgesetzt:</strong> <code>event.repeat</code>-Guard, Nappfuhr-Reset auf <code>keyup</code> statt mitten im keydown, zusätzliche deduplizierte, kanonisch sortierte Kombievents; Abgleich in <code>TestRoute</code> auf zentralem <code>pressed</code>+<code>is()</code>.</li>
+  <li class="ok"><strong>Stufe A — deterministische <code>pressed</code>-Erkennung umgesetzt:</strong> <code>event.repeat</code>-Guard, deduplizierte kanonisch sortierte Kombievents (<code>pressed</code>); Abgleich in <code>TestRoute</code> auf zentralem <code>pressed</code>+<code>is()</code>. Hinweis: Reset von <code>regularKeys</code>/<code>specialKeys</code> blieb bewusst in <code>handleKeydown</code> — unkritisch, da <code>setSpecialKeys</code> Modifier-Flags direkt aus dem Event liest; ein Verschieben auf <code>keyup</code> wäre Kosmetik, kein Fehler.</li>
   <li class="todo"><strong>Web <code>Cmd+W</code>:</strong> im Web-Build durch Browser-Chrome nicht abfangbar (Tab-Tod). Entscheidung: im Web ausblenden bzw. als „nur Information, im Electron üben" markieren — gehört zu Stufe B, bewusst später.</li>
   <li class="todo"><strong>Web <code>Cmd+T</code> (real öffnender Tab):</strong> Kollateral akzeptiert, solange der Treffer korrekt registriert wird — Stufe B.</li>
   <li class="todo"><strong>macOS-Menü-Konflikte (<code>Cmd+,</code> Preferences, <code>Cmd+Q</code>):</strong> Electron-Fingerprint inkl. App-Menü geplant, nicht umgesetzt — Stufe C.</li>
@@ -42,16 +42,19 @@
   <li class="ok"><strong><code>Keyboard.js</code> — deterministische Kombi:</strong> statt Reset vor Emission eine Zwischenvariable <code>pressedKeys = this.resolvedKeys</code>; neues Event <code>pressed</code> mit <code>{ event, keys }</code> (deduplizierte, kanonisch sortierte Kombi) zusätzlich zum bestehenden <code>shortcut</code> für andere Konsumenten (<code>OptionsOverlay</code>).</li>
   <li class="ok"><strong><code>TestRoute/index.vue</code> — zentraler Ablauf:</strong> lauscht nur noch auf <code>pressed</code>, nutzt <code>keys</code> aus dem Event statt <code>keyboard.resolvedKeys</code> nachzulesen; <code>preventDefault</code> bleibt. Treffer/Fehlgriff deterministisch aus kanonischer Kombi.</li>
 </ul>
-<h3>Verifikation</h3>
+<h3>Verifikation (vom Assistenten durchgeführt)</h3>
 <ul>
   <li class="ok"><strong>Lint:</strong> <code>npx eslint src/services/Keyboard.js src/components/TestRoute/index.vue</code> ohne Fehler.</li>
   <li class="ok"><strong>Build:</strong> <code>VUE_APP_TARGET=web yarn build:web</code> erfolgreich → <code>js/app.efc4d9ee.js</code> + <code>css/app.9daa68f3.css</code>. Render-/UI-Test von Dir ausstehend (kein Preview/Browser-Lauf hier).</li>
+  <li class="ok"><strong>Aufrufer-Struktur (Regressionsprüfung):</strong> <code>OptionsOverlay</code> (Z.284) lauscht weiter auf <code>shortcut</code> — unverändert, kein Follow-up. <code>App.js</code> (Z.117) und <code>ShortcutsRoute</code> (Z.126) nutzen <code>Keyboard.resolveCodesFromKeys</code>/<code>isPossible</code> statisch, von der Änderung unberührt. <code>TestRoute</code> ist einziger <code>pressed</code>-Konsument.</li>
+  <li class="ok"><strong>Stufe B/C Korrektheitsprüfung (nicht umgesetzt, bestätigt als offen):</strong> Web <code>Cmd+W</code> prinzipbedingt unblockbar (Browser-Chrome außerhalb der Sandbox); <code>Cmd+T</code> → Kollateral-Tab. macOS-App-Menü (<code>Cmd+,</code>, <code>Cmd+Q</code>) kollidiert erst bei Stufe C mit <code>before-input-event</code> + Menü-Fingerprint.</li>
 </ul>
 <h3>Nächste Schritte</h3>
 <ul>
   <li class="todo">Stufe A interactiv prüfen (TestRoute: Kombis korrekt erkennen, keine Repeat-Fakes, Fehlgriffe deterministisch).</li>
-  <li class="todo">Stufe B: Web <code>Cmd+W</code> ausblenden / <code>Cmd+T</code> akzeptieren; Render-Tab-Kollateral klären.</li>
+  <li class="todo">Stufe B: Web <code>Cmd+W</code> ausblenden / <code>Cmd+T</code> akzeptieren; Render-Tab-Kollateral klären. (Warte auf Ergebnis des interaktiven Stufe-A-Tests.)</li>
 </ul>
+<div class="date">Stand: Code verifiziert (Stufe A vollständig), nur der interaktive UI-Test auf dem Mac steht noch aus.</div>
 
 <h2>Protokoll vom 10.08.2026 (7. Session, Teil 2)</h2>
 <h3>Karten-Fragen komplett deutsch + fettere Buttons + Dark/Light-Theme</h3>
