@@ -136,7 +136,7 @@ export default class Keyboard {
       value = key.withShiftAltGr
     }
 
-    if (Store.get('swapYZ', false)) {
+    if (Store.get('swapYZ', true)) {
       if (value === 'y') {
         value = 'z'
       } else if (value === 'z') {

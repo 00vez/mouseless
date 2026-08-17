@@ -247,7 +247,7 @@ export default {
       theme: Store.get('theme', 'dark'),
       shortcut: Store.get('shortcut'),
       escAsCmd: Store.get('escAsCmd', false),
-      swapYZ: Store.get('swapYZ', false),
+      swapYZ: Store.get('swapYZ', true),
       longPress: Store.get('longPress', true),
       user: User,
     }

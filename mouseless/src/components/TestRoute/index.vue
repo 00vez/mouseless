@@ -133,6 +133,7 @@ export default {
       testId: uuidv4(),
       isTest: false,
       history: [],
+      retryMode: false,
     }
   },
 
@@ -246,17 +247,18 @@ export default {
       this.timeout = null
       clearTimeout(this.holdTimeout)
 
+      this.retryMode = true
       this.currentShortcut = previous.shortcut
-      this.testFailed = previous.testFailed
-      this.success = previous.success
-      this.pressedResolvedKeys = previous.pressedResolvedKeys
-      this.failedResolvedKeys = previous.failedResolvedKeys
+      this.testFailed = false
+      this.success = false
+      this.pressedResolvedKeys = []
+      this.failedResolvedKeys = []
       this.testId = uuidv4()
       this.isTest = this.trainedIds.includes(previous.shortcut.id) || this.learnedIds.includes(previous.shortcut.id)
     },
 
     next() {
-      if (this.currentShortcut) {
+      if (this.currentShortcut && !this.retryMode) {
         this.history.push({
           shortcut: this.currentShortcut,
           testFailed: this.testFailed,
@@ -266,6 +268,7 @@ export default {
         })
       }
 
+      this.retryMode = false
       this.testId = uuidv4()
       this.testFailed = false
       this.success = false
