@@ -22,6 +22,23 @@
 
 <h1>OhneMaus — Protokoll & Fortschritt</h1>
 
+<h2>Protokoll vom 17.08.2026 (11. Session)</h2>
+<h3>Fixes nach UI-Feedback</h3>
+<ul>
+  <li class="ok"><strong>Word-Karte wurde nicht angezeigt:</strong> <code>AppsItem.logo()</code> lädt <code>require('@/assets/logos/word.svg')</code>; das provisorische Asset fehlte → <code>require</code>-Fehler, Karte erschien nicht. <code>word.svg</code> angelegt.</li>
+  <li class="ok"><strong>Offizielles Word-Logo:</strong> statt eigenem Platzhalter das echte Microsoft-Word-Logo (<code>Microsoft_Office_Word_(2019–2025).svg</code> von Wikimedia Commons, RGB, viewBox 1881×1750) als <code>src/assets/logos/word.svg</code> übernommen.</li>
+  <li class="ok"><strong>Skip-Button-Label dauerhaft sichtbar:</strong> <code>skip-button__label</code> hatte <code>opacity: 0</code> mit Hover-Einblendung; fix zu immer sichtbar.</li>
+</ul>
+<h3>Verifikation</h3>
+<ul>
+  <li class="ok"><strong>Build + Deploy:</strong> <code>app.f7454558.js</code>, in-place via <code>cp -a stage_new/. html/</code> (nginx-Inode-sicher), Cache gepurged; Root, JS, Logo-Asset alle HTTP 200.</li>
+  <li class="warn"><strong>SCSS-Lint:</strong> <code>npx eslint src/components/SkipButton/style.scss</code> meldet Parsing-Fehler (<code>Unexpected token</code>) — <code>eslint</code> parst SCSS ohne entsprechende Konfigurations-Plugins nicht; kein echter Codefehler, Build kompiliert das SCSS erfolgreich. Pre-Existing-Verhalten.</li>
+</ul>
+<h3>Nächste Schritte</h3>
+<ul>
+  <li class="todo">Interaktiver UI-Test Word-Karte/Skip-Label bestätigt; Rest offen (Stufe B/C reservierte Browser-Kombis).</li>
+</ul>
+
 <h2>Protokoll vom 17.08.2026 (10. Session)</h2>
 <h3>Umgesetzte Änderungswünsche (5 Punkte)</h3>
 <ul>
