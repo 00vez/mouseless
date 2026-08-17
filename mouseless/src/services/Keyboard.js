@@ -136,7 +136,19 @@ export default class Keyboard {
       value = key.withShiftAltGr
     }
 
-    if (value === ' ' || value === ' ') {
+    if (Store.get('swapYZ', false)) {
+      if (value === 'y') {
+        value = 'z'
+      } else if (value === 'z') {
+        value = 'y'
+      } else if (value === 'Y') {
+        value = 'Z'
+      } else if (value === 'Z') {
+        value = 'Y'
+      }
+    }
+
+    if (value === ' ' || value === ' ') {
       return 'Space'
     }
 
@@ -265,6 +277,10 @@ export default class Keyboard {
     }
     this.setSpecialKeys(event)
     this.emitter.emit('update', event)
+    this.emitter.emit('keyup', {
+      event,
+      keys: this.resolvedKeys,
+    })
   }
 
   is(keys = []) {

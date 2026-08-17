@@ -39,6 +39,12 @@
     min-height: 16px;
   }
 
+  &__footer-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
   &__title {
     font-size: 24px;
     font-weight: 700;

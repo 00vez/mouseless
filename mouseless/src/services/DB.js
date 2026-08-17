@@ -9,7 +9,7 @@ import Run from '@/models/Run'
 
 const isWebTarget = process.env.VUE_APP_TARGET === 'web'
 
-const webAppWhitelist = ['safari', 'macos', 'finder', 'spotify', 'googledocs', 'gmail']
+const webAppWhitelist = ['safari', 'macos', 'finder', 'spotify', 'googledocs', 'gmail', 'word']
 const webHiddenAppsDefault = ['gmail', 'googledocs']
 
 export default new class {

@@ -10,7 +10,7 @@ import Wrapper from '@/components/Wrapper'
 Vue.config.productionTip = false
 Vue.prototype.$db = DB
 
-Vue.filter('key', value => keyboardSymbol(value, 'mac'))
+Vue.filter('key', value => keyboardSymbol(value === '/' ? '#' : value, 'mac'))
 
 Vue.filter('uppercase', value => {
   const ignoredCharacters = ['ß']

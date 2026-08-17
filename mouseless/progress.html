@@ -22,6 +22,40 @@
 
 <h1>OhneMaus — Protokoll & Fortschritt</h1>
 
+<h2>Protokoll vom 17.08.2026 (10. Session)</h2>
+<h3>Umgesetzte Änderungswünsche (5 Punkte)</h3>
+<ul>
+  <li class="ok"><strong>Y/Z-Swap-Einstellung:</strong> Toggle <code>swapYZ</code> im OptionsOverlay („Tasten Y und Z vertauschen"), gespeichert im Store; in <code>Keyboard.getKeyValue</code> werden <code>y</code>/<code>z</code> (<code>Y</code>/<code>Z</code>) getauscht, analog zu <code>escAsCmd</code>.</li>
+  <li class="ok"><strong>TestRoute „eine Frage zurück":</strong> Button <code>Zurück</code> links neben Skip; <code>next()</code> sichert History-Slot, <code>back()</code> stellt vorherige Frage inkl. Test-/Fehlerstatus wieder her. Footer-Gruppe via <code>__footer-actions</code>.</li>
+  <li class="ok"><strong>Neues Word-App-Set:</strong> <code>src/apps/word.js</code> (4 Sets: Dokument, Text formatieren, Absatz, Bearbeiten; 27 verifizierte Shortcuts), in Web-Whitelist (<code>DB.js</code>) und Apps-Toggle aufgenommen.</li>
+  <li class="ok"><strong>UI-Anzeige <code>/</code> → <code>#</code>:</strong> zentral im <code>key</code>-Filter (<code>main.js</code>); <code>/</code> wird als <code>#</code> gerendert, <code>?</code> (Shift-/ ) bleibt unverändert.</li>
+  <li class="ok"><strong>Long-Press-Einstellung:</strong> Toggle <code>longPress</code> („Gedrückte Taste 300 ms anzeigen") im OptionsOverlay, default an; <code>Keyboard</code> emittiert <code>keyup</code>-Event, <code>TestRoute</code> hält <code>is-active</code> bei Long&nbsp;Press 300&nbsp;ms, sonst sofortige Freigabe. Timeout-Aufräumung in <code>next()</code>/<code>beforeDestroy</code>.</li>
+</ul>
+<h3>Verifikation</h3>
+<ul>
+  <li class="ok"><strong>Lint:</strong> <code>npx eslint ... --fix</code> ohne Fehler (unnötiger <code>event</code>-Destructure entfernt, CRLF normalisiert, Endzeile <code>word.js</code>).</li>
+  <li class="ok"><strong>Build:</strong> <code>VUE_APP_TARGET=web yarn build:web</code> erfolgreich → <code>js/app.9032aeac.js</code> + <code>css/app.446ff404.css</code>. Interaktiver UI-Test (Long-Press, Y/Z, Zurück-Button, Word-Set, <code>#</code>-Anzeige) auf dem Mac ausstehend.</li>
+  <li class="warn"><strong>Nicht verifiziert:</strong> Y/Z-Swap nur in <code>getKeyValue</code> (Eingabe-Erkennung); <code>resolveCodesFromKeys</code> (Anzeige/Labels) tauscht nicht. Konsistenz bei aktiver Einstellung noch offen — ggf. Folgeschritt.</li>
+</ul>
+<h3>Nächste Schritte</h3>
+<ul>
+  <li class="todo">Interaktiv prüfen und Deploy via <code>ssh unraid</code> (Web-Build) nach UI-Feedback.</li>
+</ul>
+
+<h2>Protokoll vom 17.08.2026 (9. Session)</h2>
+<h3>Gesammelte Änderungswünsche (noch nicht umgesetzt)</h3>
+<ul>
+  <li class="todo"><strong>Y/Z-Mapping umschaltbar:</strong> deutscher Tastatur-Y/Z-Fehler als Einstellung lösbar, analog zu <code>escAsCmd</code> (Store-Setting + OptionsOverlay-Toggle).</li>
+  <li class="todo"><strong>TestRoute — eine Frage zurück:</strong> Button links neben dem Skip-Button, der zur vorherigen Frage springt. Skip geht weiter zur nächsten, Top-Back zur Übersicht — der zwischenzeitliche Zurück-Button fehlt.</li>
+  <li class="todo"><strong>Neues Word-App-Set:</strong> komplettes Set (App mit mehreren Shortcut-Karten), nicht nur eine Karte.</li>
+  <li class="todo"><strong>UI-Anzeige <code>/</code> → <code>#</code>:</strong> alle Schrägstriche in der Anzeige gegen <code>#</code> tauschen (z. B. <code>Cmd+/</code> → <code>Cmd+#</code>).</li>
+  <li class="todo"><strong>Long-Press-Erkennung (~300ms) ausschaltbar:</strong> getipptes Zeichen galt ~300ms als gedrückt, obwohl schon losgelassen; als Einstellung mit dem Namen <strong>„Long&nbsp;Press"</strong> im OptionsOverlay abschaltbar.</li>
+</ul>
+<h3>Stand</h3>
+<ul>
+  <li class="warn"><strong>Nichts der oben genannten Wünsche bisher umgesetzt.</strong> Liste vom Nutzer am 17.08.2026 als Arbeitsvorrat festgehalten; Umsetzung steht aus, Punkt 3 (Word) nach Rücksprache als volles App-Set präzisiert.</li>
+</ul>
+
 <h2>Protokoll vom 17.08.2026 (8. Session)</h2>
 <h3>Analyse und Befund: Shortcut-Erkennung „Tab öffnen"-Problem</h3>
 <ul>

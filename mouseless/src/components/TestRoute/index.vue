@@ -79,7 +79,12 @@
             :learned-count="learnedIds.length"
             :count="shortcuts.length"
           />
-          <skip-button @click.native="skip" />
+          <div class="test-route__footer-actions">
+            <btn icon="arrow-left" @click.native="back">
+              Zurück
+            </btn>
+            <skip-button @click.native="skip" />
+          </div>
         </div>
       </div>
     </template>
@@ -96,6 +101,7 @@ import SkipButton from '@/components/SkipButton'
 import Key from '@/components/Key'
 import Page from '@/components/Page'
 import SetProgress from '@/components/SetProgress'
+import Store from '@/services/Store'
 
 export default {
   name: 'TestRoute',
@@ -114,6 +120,8 @@ export default {
       isFailed: false,
       testFailed: false,
       timeout: null,
+      holdTimeout: null,
+      longPress: Store.get('longPress', true),
       keyboard: new Keyboard(),
       pressedResolvedKeys: [],
       failedResolvedKeys: [],
@@ -124,6 +132,7 @@ export default {
       currentShortcut: null,
       testId: uuidv4(),
       isTest: false,
+      history: [],
     }
   },
 
@@ -226,12 +235,43 @@ export default {
       this.next()
     },
 
+    back() {
+      const previous = this.history.pop()
+
+      if (!previous || !previous.shortcut) {
+        return
+      }
+
+      clearTimeout(this.timeout)
+      this.timeout = null
+      clearTimeout(this.holdTimeout)
+
+      this.currentShortcut = previous.shortcut
+      this.testFailed = previous.testFailed
+      this.success = previous.success
+      this.pressedResolvedKeys = previous.pressedResolvedKeys
+      this.failedResolvedKeys = previous.failedResolvedKeys
+      this.testId = uuidv4()
+      this.isTest = this.trainedIds.includes(previous.shortcut.id) || this.learnedIds.includes(previous.shortcut.id)
+    },
+
     next() {
+      if (this.currentShortcut) {
+        this.history.push({
+          shortcut: this.currentShortcut,
+          testFailed: this.testFailed,
+          success: this.success,
+          pressedResolvedKeys: this.pressedResolvedKeys,
+          failedResolvedKeys: this.failedResolvedKeys,
+        })
+      }
+
       this.testId = uuidv4()
       this.testFailed = false
       this.success = false
       this.pressedResolvedKeys = []
       this.failedResolvedKeys = []
+      clearTimeout(this.holdTimeout)
 
       this.run.update({
         trainedIds: this.trainedIds,
@@ -320,6 +360,17 @@ export default {
       this.pressedResolvedKeys = this.keyboard.resolvedKeys
     })
 
+    this.keyboard.on('keyup', ({ keys }) => {
+      if (this.longPress) {
+        clearTimeout(this.holdTimeout)
+        this.holdTimeout = setTimeout(() => {
+          this.pressedResolvedKeys = keys
+        }, 300)
+      } else {
+        this.pressedResolvedKeys = keys
+      }
+    })
+
     this.keyboard.on('pressed', ({ event, keys }) => {
       if (!this.started || this.timeout) {
         return
@@ -373,6 +424,7 @@ export default {
 
   beforeDestroy() {
     clearTimeout(this.timeout)
+    clearTimeout(this.holdTimeout)
     this.keyboard.destroy()
   },
 }

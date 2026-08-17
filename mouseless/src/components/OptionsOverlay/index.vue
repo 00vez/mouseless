@@ -52,6 +52,34 @@
 
       <div class="options-overlay__section">
         <div>
+          Y und Z
+        </div>
+        <div>
+          <label class="options-overlay__label">
+            <input type="checkbox" v-model="swapYZ">
+            <span>
+              Tasten Y und Z vertauschen
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="options-overlay__section">
+        <div>
+          Long Press
+        </div>
+        <div>
+          <label class="options-overlay__label">
+            <input type="checkbox" v-model="longPress">
+            <span>
+              Gedrückte Taste 300&nbsp;ms anzeigen
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="options-overlay__section">
+        <div>
           Darstellung
         </div>
         <div>
@@ -150,6 +178,16 @@
               Google Docs
             </span>
           </label>
+          <label class="options-overlay__label">
+            <input
+              type="checkbox"
+              :checked="!hiddenApps.includes('word')"
+              @change="toggleApp('word')"
+            >
+            <span>
+              Word
+            </span>
+          </label>
         </div>
       </div>
 
@@ -209,6 +247,8 @@ export default {
       theme: Store.get('theme', 'dark'),
       shortcut: Store.get('shortcut'),
       escAsCmd: Store.get('escAsCmd', false),
+      swapYZ: Store.get('swapYZ', false),
+      longPress: Store.get('longPress', true),
       user: User,
     }
   },
@@ -231,6 +271,14 @@ export default {
 
     escAsCmd() {
       Store.set('escAsCmd', this.escAsCmd)
+    },
+
+    swapYZ() {
+      Store.set('swapYZ', this.swapYZ)
+    },
+
+    longPress() {
+      Store.set('longPress', this.longPress)
     },
 
     theme() {
