@@ -18,12 +18,6 @@
 
   &__label {
     margin-right: 5px;
-    opacity: 0;
-    transition: opacity 0.2s $ease;
-  }
-
-  &:hover &__label {
-    opacity: 1;
   }
 
   &__icon {
