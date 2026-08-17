@@ -134,6 +134,7 @@ export default {
       isTest: false,
       history: [],
       retryMode: false,
+      pendingSuccess: null,
     }
   },
 
@@ -237,7 +238,19 @@ export default {
     },
 
     back() {
-      const previous = this.history.pop()
+      let previous
+
+      if (this.pendingSuccess) {
+        previous = {
+          shortcut: this.currentShortcut,
+          trainedIds: [...this.trainedIds],
+          learnedIds: [...this.learnedIds],
+          skippedIds: [...this.skippedIds],
+        }
+        this.pendingSuccess = null
+      } else {
+        previous = this.history.pop()
+      }
 
       if (!previous || !previous.shortcut) {
         return
@@ -271,6 +284,16 @@ export default {
           learnedIds: [...this.learnedIds],
           skippedIds: [...this.skippedIds],
         })
+      }
+
+      if (this.pendingSuccess) {
+        if (this.pendingSuccess.isTest) {
+          this.addToLearnedIds(this.pendingSuccess.id)
+        } else {
+          this.addToTrainedIds(this.pendingSuccess.id)
+        }
+
+        this.pendingSuccess = null
       }
 
       this.retryMode = false
@@ -397,10 +420,9 @@ export default {
         const { id } = this.currentShortcut
         this.success = true
 
-        if (this.isTest && !this.testFailed) {
-          this.addToLearnedIds(id)
-        } else {
-          this.addToTrainedIds(id)
+        this.pendingSuccess = {
+          id,
+          isTest: this.isTest && !this.testFailed,
         }
 
         this.timeout = setTimeout(() => {
