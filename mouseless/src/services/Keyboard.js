@@ -222,6 +222,10 @@ export default class Keyboard {
   }
 
   handleKeydown(event) {
+    if (event.repeat) {
+      return
+    }
+
     if (event.code === 'Escape' && Store.get('escAsCmd', false)) {
       this.syntheticMeta = true
       this.setSpecialKeys(event)
@@ -243,7 +247,14 @@ export default class Keyboard {
     }
 
     this.regularKeys.push(value)
+
+    const pressedKeys = this.resolvedKeys
     this.emitter.emit('shortcut', event)
+    this.emitter.emit('pressed', {
+      event,
+      keys: pressedKeys,
+    })
+
     this.regularKeys = []
     this.specialKeys = []
   }

@@ -320,17 +320,17 @@ export default {
       this.pressedResolvedKeys = this.keyboard.resolvedKeys
     })
 
-    this.keyboard.on('shortcut', event => {
+    this.keyboard.on('pressed', ({ event, keys }) => {
       if (!this.started || this.timeout) {
         return
       }
 
       event.preventDefault()
-      this.pressedResolvedKeys = this.keyboard.resolvedKeys
+      this.pressedResolvedKeys = keys
 
       // eslint-disable-next-line
       console.log({
-        pressed: this.keyboard.resolvedKeys,
+        pressed: keys,
         expected: this.currentShortcut.resolvedKeys,
       })
 
