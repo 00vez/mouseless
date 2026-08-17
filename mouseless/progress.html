@@ -41,6 +41,11 @@
 <ul>
   <li class="todo">Interaktiv prüfen und Deploy via <code>ssh unraid</code> (Web-Build) nach UI-Feedback.</li>
 </ul>
+<h3>Deployment-Befund (1708)</h3>
+<ul>
+  <li class="warn"><strong>Atomarer Swap bricht nginx:</strong> <code>mv stage_new html</code> ersetzt die Directory-Inode von <code>/usr/share/nginx/html</code>; nginx hält einen offenen Handle auf die alte Inode → <code>stat() ... Stale file handle (116)</code> + Redirect-Zyklus → HTTP 500. Fix: <code>docker restart maus</code>.</li>
+  <li class="ok"><strong>Künftige Deploys in-place:</strong> zurück zu <code>cp -a stage_new/. html/</code> (Inode bleibt), kein <code>mv</code>-Replace mehr. Deploy-Verifikation: <code>curl -o /dev/null -w '%{http_code}' http://192.168.178.14:8081/</code> → 200.</li>
+</ul>
 
 <h2>Protokoll vom 17.08.2026 (9. Session)</h2>
 <h3>Gesammelte Änderungswünsche (noch nicht umgesetzt)</h3>
